@@ -7,8 +7,8 @@ package com.teamj.arquitectura.publicidad.model;
 
 /**
  *
- * @author Dennys
+ * @author Klever
  */
-public class NewClass {
+public class SegmentoCampania {
     
 }
