@@ -15,7 +15,7 @@ import javax.persistence.Embeddable;
  * @author Klever
  */
 @Embeddable
-public class DetalleCampaniaPK implements Serializable{
+public class SegmentoDetalleCampaniaPK implements Serializable{
     
     @Column(name = "SEC_CAMPANIA")
     private Integer secCampania;
@@ -23,10 +23,10 @@ public class DetalleCampaniaPK implements Serializable{
     @Column(name = "ID_ELEMENTO")
     private Integer idElemento;
 
-    public DetalleCampaniaPK() {
+    public SegmentoDetalleCampaniaPK() {
     }
 
-    public DetalleCampaniaPK(Integer secCampania, Integer idElemento) {
+    public SegmentoDetalleCampaniaPK(Integer secCampania, Integer idElemento) {
         this.secCampania = secCampania;
         this.idElemento = idElemento;
     }
@@ -49,9 +49,9 @@ public class DetalleCampaniaPK implements Serializable{
 
     @Override
     public int hashCode() {
-        int hash = 5;
-        hash = 53 * hash + Objects.hashCode(this.secCampania);
-        hash = 53 * hash + Objects.hashCode(this.idElemento);
+        int hash = 7;
+        hash = 11 * hash + Objects.hashCode(this.secCampania);
+        hash = 11 * hash + Objects.hashCode(this.idElemento);
         return hash;
     }
 
@@ -66,7 +66,7 @@ public class DetalleCampaniaPK implements Serializable{
         if (getClass() != obj.getClass()) {
             return false;
         }
-        final DetalleCampaniaPK other = (DetalleCampaniaPK) obj;
+        final SegmentoDetalleCampaniaPK other = (SegmentoDetalleCampaniaPK) obj;
         if (!Objects.equals(this.secCampania, other.secCampania)) {
             return false;
         }
@@ -78,8 +78,9 @@ public class DetalleCampaniaPK implements Serializable{
 
     @Override
     public String toString() {
-        return "DetalleCampaniaPK{" + "secCampania=" + secCampania + ", idElemento=" + idElemento + '}';
+        return "SegmentoDetalleCampaniaPK{" + "secCampania=" + secCampania + ", idElemento=" + idElemento + '}';
     }
-
-       
+    
+    
+    
 }
