@@ -16,6 +16,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 
@@ -27,7 +28,8 @@ import javax.persistence.Temporal;
 @Table(name = "HISTORIAL_CAMPANIA")
 public class HistorialCampania implements Serializable{
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)//MYSQL
+    @SequenceGenerator(name = "HISTORIAL_CAMPANIA_ID", sequenceName = "HISTORIAL_CAMPANIA_SEQ", allocationSize = 1)
+    @GeneratedValue(strategy = GenerationType.AUTO, generator = "HISTORIAL_CAMPANIA_ID")
     @Column(name = "ID_HISTORIAL_CAMPANIA")
     private Integer id;
     

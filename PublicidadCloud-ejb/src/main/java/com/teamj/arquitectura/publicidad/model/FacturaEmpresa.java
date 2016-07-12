@@ -16,6 +16,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 
@@ -27,7 +28,8 @@ import javax.persistence.Temporal;
 @Table(name = "FACTURA_EMPRESA")
 public class FacturaEmpresa implements Serializable{
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)//MYSQL
+    @SequenceGenerator(name = "FACTURA_EMPRESA_ID", sequenceName = "FACTURA_EMPRESA_SEQ", allocationSize = 1)
+    @GeneratedValue(strategy = GenerationType.AUTO, generator = "FACTURA_EMPRESA_ID")
     @Column(name = "ID_FACTURA")
     private Integer id;
     

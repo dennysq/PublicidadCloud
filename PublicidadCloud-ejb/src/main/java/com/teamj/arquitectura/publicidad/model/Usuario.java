@@ -12,6 +12,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 /**
@@ -22,7 +23,8 @@ import javax.persistence.Table;
 @Table(name = "USUARIO")
 public class Usuario implements Serializable{
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)//MYSQL
+    @SequenceGenerator(name = "USUARIO_ID", sequenceName = "USUARIO_SEQ", allocationSize = 1)
+    @GeneratedValue(strategy = GenerationType.AUTO, generator = "USUARIO_ID")
     @Column(name = "ID_USUARIO")
     private Integer id;
     
