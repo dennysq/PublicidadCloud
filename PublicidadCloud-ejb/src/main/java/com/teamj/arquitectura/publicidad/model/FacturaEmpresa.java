@@ -28,8 +28,9 @@ import javax.persistence.Temporal;
 @Table(name = "FACTURA_EMPRESA")
 public class FacturaEmpresa implements Serializable{
     @Id
-    @SequenceGenerator(name = "FACTURA_EMPRESA_ID", sequenceName = "FACTURA_EMPRESA_SEQ", allocationSize = 1)
-    @GeneratedValue(strategy = GenerationType.AUTO, generator = "FACTURA_EMPRESA_ID")
+//    @SequenceGenerator(name = "FACTURA_EMPRESA_ID", sequenceName = "FACTURA_EMPRESA_SEQ", allocationSize = 1)
+//    @GeneratedValue(strategy = GenerationType.AUTO, generator = "FACTURA_EMPRESA_ID")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)//MYSQL&&SQL
     @Column(name = "ID_FACTURA")
     private Integer id;
     

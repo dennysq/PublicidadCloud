@@ -26,8 +26,9 @@ import javax.persistence.Table;
 public class TargetEdad implements Serializable{
     
     @Id
-    @SequenceGenerator(name = "TARGET_EDAD_ID", sequenceName = "TARGET_EDAD_SEQ", allocationSize = 1)
-    @GeneratedValue(strategy = GenerationType.AUTO, generator = "TARGET_EDAD_ID")
+//    @SequenceGenerator(name = "TARGET_EDAD_ID", sequenceName = "TARGET_EDAD_SEQ", allocationSize = 1)
+//    @GeneratedValue(strategy = GenerationType.AUTO, generator = "TARGET_EDAD_ID")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)//MYSQL&&SQL
     @Column(name = "ID_TARGET_EDAD")
     private Integer id;
     

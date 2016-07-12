@@ -28,8 +28,9 @@ import javax.persistence.Temporal;
 public class Campania implements Serializable{
 
     @Id
-    @SequenceGenerator(name = "CAMPANIA_SEC", sequenceName = "CAMPANIA_SEQ", allocationSize = 1)
-    @GeneratedValue(strategy = GenerationType.AUTO, generator = "CAMPANIA_SEC")
+//    @SequenceGenerator(name = "CAMPANIA_SEC", sequenceName = "CAMPANIA_SEQ", allocationSize = 1)
+//    @GeneratedValue(strategy = GenerationType.AUTO, generator = "CAMPANIA_SEC")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)//MYSQL&&SQL
     @Column(name = "SEC_CAMPANIA")
     private Integer sec;
     
