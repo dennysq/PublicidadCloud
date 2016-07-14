@@ -5,7 +5,7 @@
  */
 package com.teamj.arquitectura.publicidad.ws;
 
-import com.teamj.arquitectura.publicidad.services.TargetEdadServicio;
+import com.teamj.arquitectura.publicidad.services.ElementoServicio;
 import java.util.List;
 import javax.ejb.EJB;
 import javax.ws.rs.core.Context;
@@ -24,52 +24,52 @@ import javax.ws.rs.core.MediaType;
  *
  * @author Klever
  */
-@Path("targetEdad")
+@Path("elemento")
 @RequestScoped
-public class TargetEdadResource {
+public class ElementoResource {
 
     @Context
     private UriInfo context;
     
     @EJB
-    TargetEdadServicio targetEdadServicio;
+    ElementoServicio elementoServicio;
 
     /**
-     * Creates a new instance of TargetEdadResource
+     * Creates a new instance of ElementoResource
      */
-    public TargetEdadResource() {
+    public ElementoResource() {
     }
 
     /**
-     * Retrieves representation of an instance of com.teamj.arquitectura.publicidad.ws.TargetEdadResource
+     * Retrieves representation of an instance of com.teamj.arquitectura.publicidad.ws.ElementoResource
      * @return an instance of java.lang.String
      */
     @GET
     @Produces(MediaType.APPLICATION_JSON+";charset=UTF-8")
-    @Path("/retrieveTargetE")
-    public List<com.teamj.arquitectura.publicidad.model.TargetEdad> retrieveTargetE() {
+    @Path("/retrieveElemento")
+    public List<com.teamj.arquitectura.publicidad.model.Elemento> retrieveElemento() {
         //TODO return proper representation object
-        return targetEdadServicio.retrieveTargetE();
+        return elementoServicio.retrieveElem();
     }
 
     @POST
     @Consumes(MediaType.APPLICATION_JSON)
-    @Path("/registrarTargetEdad")
-    public void registrarTargetEdad(com.teamj.arquitectura.publicidad.model.TargetEdad content) {
-        targetEdadServicio.registrarTargetE(content);
+    @Path("/registrarElemento")
+    public void registrarElemento(com.teamj.arquitectura.publicidad.model.Elemento content) {
+        elementoServicio.registrarElem(content);
     }
     
     @POST
     @Consumes(MediaType.APPLICATION_JSON)
-    @Path("/editarTargetEdad")
-    public boolean editarTargetEdad(com.teamj.arquitectura.publicidad.model.TargetEdad content) {
-        return targetEdadServicio.editarTargetE(content);
+    @Path("/editarElemento")
+    public boolean editarElemento(com.teamj.arquitectura.publicidad.model.Elemento content) {
+        return elementoServicio.editarElem(content);
     }
     
     @POST
     @Consumes(MediaType.APPLICATION_JSON)
-    @Path("/eliminarTargetEdad")
-    public void eliminarTargetEdad(com.teamj.arquitectura.publicidad.model.TargetEdad content) {
-        targetEdadServicio.eliminarTargetE(content.getId());
+    @Path("/eliminarElemento")
+    public void eliminarElemento(com.teamj.arquitectura.publicidad.model.Elemento content) {
+        elementoServicio.eliminarElem(content.getId());
     }
 }

@@ -26,7 +26,7 @@ public class TargetEdadServicio {
     @EJB
     private EmpresaDAO empresaDAO;
     
-    public List<TargetEdad> retrieveEmp() {
+    public List<TargetEdad> retrieveTargetE() {
         return this.targetEdadDAO.findAll();
     }
     
@@ -35,6 +35,7 @@ public class TargetEdadServicio {
         TargetEdad temp = new TargetEdad();
 
         //temp.setEmpresa(te.getEmpresa());//Corregir esta parte
+        temp.setEmpresa(this.empresaDAO.findById(te.getEmpresa().getRuc(), true));
         temp.setNombre(te.getNombre());
         temp.setDescripcion(te.getDescripcion());
         temp.setEdadMinima(te.getEdadMinima());
