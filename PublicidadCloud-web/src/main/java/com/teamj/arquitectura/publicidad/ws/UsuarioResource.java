@@ -6,6 +6,9 @@
 package com.teamj.arquitectura.publicidad.ws;
 
 import com.teamj.arquitectura.publicidad.model.Usuario;
+import com.teamj.arquitectura.publicidad.services.UsuarioServicio;
+import java.util.List;
+import javax.ejb.EJB;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.UriInfo;
 import javax.ws.rs.Produces;
@@ -21,12 +24,16 @@ import javax.ws.rs.core.MediaType;
  *
  * @author Andres
  */
-@Path("Usuario")
+@Path("usuario")
 @RequestScoped
 public class UsuarioResource {
 
     @Context
     private UriInfo context;
+    
+    @EJB
+    UsuarioServicio usuarioServicio;
+    
 
     /**
      * Creates a new instance of UsuarioResource
@@ -39,10 +46,11 @@ public class UsuarioResource {
      * @return an instance of com.teamj.arquitectura.publicidad.model.Usuario
      */
     @GET
-    @Produces(MediaType.APPLICATION_JSON)
-    public com.teamj.arquitectura.publicidad.model.Usuario getJson() {
+    @Produces(MediaType.APPLICATION_JSON+";charset=UTF-8")
+    @Path("/retrieveUsers")
+    public List<com.teamj.arquitectura.publicidad.model.Usuario> retrieveUsers() {
         //TODO return proper representation object
-        return new Usuario();
+        return usuarioServicio.retrieveUsers();        
     }
 
     /**
