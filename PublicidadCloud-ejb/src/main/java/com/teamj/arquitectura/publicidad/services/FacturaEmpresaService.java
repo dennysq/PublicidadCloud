@@ -27,7 +27,7 @@ public class FacturaEmpresaService {
         return this.facturaEmpresaDAO.findAll();
     }
      
-    public void registrarFacturaEmp(FacturaEmpresa fe) throws ValidationException {
+    public boolean registrarFacturaEmp(FacturaEmpresa fe) throws ValidationException {
         boolean flag = false;
         FacturaEmpresa temp = new FacturaEmpresa();
 
@@ -40,5 +40,25 @@ public class FacturaEmpresaService {
         temp.setSubtotal(fe.getSubtotal());
 
         facturaEmpresaDAO.insert(temp);
+        
+        return true;
+    }
+    
+    public boolean editarFacturaEmp(FacturaEmpresa fe) throws ValidationException {
+        boolean flag = false;
+        try {
+            this.facturaEmpresaDAO.update(fe);
+            flag = true;
+        } catch (Exception e) {
+            throw new ValidationException("Error al editar la empresa", e);
+        }
+        return flag;
+    }
+    
+    public void eliminarFacturaEmp(Integer id) {
+        FacturaEmpresa temp = this.facturaEmpresaDAO.findById(id, false);
+        if (temp != null) {
+            this.facturaEmpresaDAO.remove(temp);
+        }
     }
 }

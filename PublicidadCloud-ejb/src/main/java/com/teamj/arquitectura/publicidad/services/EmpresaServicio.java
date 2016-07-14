@@ -73,4 +73,19 @@ public class EmpresaServicio {
             this.empresaDAO.remove(temp);
         }
     }
+    
+    public boolean buscarEmp(Empresa emp){
+        Empresa tempEmp = new Empresa();
+        boolean flag = false;
+        tempEmp.setRuc(emp.getRuc());
+
+        List<Empresa> tempList = this.empresaDAO.find(tempEmp);
+        if (tempList != null && tempList.size() == 1) {
+            if (emp.getRuc().equals(tempList.get(0).getRuc())) {
+                flag = true;
+                return flag;
+            }
+        }
+        return flag;
+    }
 }

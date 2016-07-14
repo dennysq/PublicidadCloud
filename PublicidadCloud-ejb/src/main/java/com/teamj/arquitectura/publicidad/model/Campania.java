@@ -44,15 +44,15 @@ public class Campania implements Serializable{
     
     @Column(name = "FECHA_CREACION")
     @Temporal(javax.persistence.TemporalType.TIMESTAMP)
-    private Date fecha_creacion;
+    private Date fechaCreacion;
     
     @Column(name = "FECHA_INICIO")
     @Temporal(javax.persistence.TemporalType.TIMESTAMP)
-    private Date fecha_inicio;
+    private Date fechaInicio;
     
     @Column(name = "FECHA_FIN")
     @Temporal(javax.persistence.TemporalType.TIMESTAMP)
-    private Date fecha_fin;
+    private Date fechaFin;
     
     @Column(name = "ESTADO")
     private String estado;
@@ -92,30 +92,31 @@ public class Campania implements Serializable{
         this.descripcion = descripcion;
     }
 
-    public Date getFecha_creacion() {
-        return fecha_creacion;
+    public Date getFechaCreacion() {
+        return fechaCreacion;
     }
 
-    public void setFecha_creacion(Date fecha_creacion) {
-        this.fecha_creacion = fecha_creacion;
+    public void setFechaCreacion(Date fechaCreacion) {
+        this.fechaCreacion = fechaCreacion;
     }
 
-    public Date getFecha_inicio() {
-        return fecha_inicio;
+    public Date getFechaInicio() {
+        return fechaInicio;
     }
 
-    public void setFecha_inicio(Date fecha_inicio) {
-        this.fecha_inicio = fecha_inicio;
+    public void setFechaInicio(Date fechaInicio) {
+        this.fechaInicio = fechaInicio;
     }
 
-    public Date getFecha_fin() {
-        return fecha_fin;
+    public Date getFechaFin() {
+        return fechaFin;
     }
 
-    public void setFecha_fin(Date fecha_fin) {
-        this.fecha_fin = fecha_fin;
+    public void setFechaFin(Date fechaFin) {
+        this.fechaFin = fechaFin;
     }
 
+    
     public String getEstado() {
         return estado;
     }
@@ -151,6 +152,6 @@ public class Campania implements Serializable{
 
     @Override
     public String toString() {
-        return "Campania{" + "sec=" + sec + ", empresa=" + empresa + ", nombre=" + nombre + ", descripcion=" + descripcion + ", fecha_creacion=" + fecha_creacion + ", fecha_inicio=" + fecha_inicio + ", fecha_fin=" + fecha_fin + ", estado=" + estado + '}';
-    }
+        return "Campania{" + "sec=" + sec + ", empresa=" + empresa + ", nombre=" + nombre + ", descripcion=" + descripcion + ", fechaCreacion=" + fechaCreacion + ", fechaInicio=" + fechaInicio + ", fechaFin=" + fechaFin + ", estado=" + estado + '}';
+    }   
 }

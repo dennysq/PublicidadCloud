@@ -27,16 +27,28 @@ public class ElementoServicio {
         return this.elementoDAO.findAll();
     }
     
-    public void registrarElem(Elemento elem) throws ValidationException {
+    public boolean registrarElem(Elemento elem) throws ValidationException {
         boolean flag = false;
         Elemento temp = new Elemento();
 
         temp.setNombre(elem.getNombre());
-        temp.setPosicion(elem.getPosicion());
-        temp.setUrl(elem.getUrl());
-        temp.setPath(elem.getPath());
-       
-        elementoDAO.insert(temp);
+        List<Elemento> tempList = this.elementoDAO.find(temp);
+        if (tempList == null || tempList.isEmpty()) {//el ruc de empresa no existe
+            try {
+
+            temp.setPosicion(elem.getPosicion());
+            temp.setUrl(elem.getUrl());
+            temp.setPath(elem.getPath());
+
+            elementoDAO.insert(temp);
+
+                flag = true;
+            } catch (Exception e) {
+                throw new ValidationException("Error al crear un nuevo elemento", e);
+            }
+        }
+        
+        return flag;
     }
     
     public boolean editarElem(Elemento elem) throws ValidationException {
@@ -56,7 +68,4 @@ public class ElementoServicio {
             this.elementoDAO.remove(temp);
         }
     }
-    
-    
-
 }

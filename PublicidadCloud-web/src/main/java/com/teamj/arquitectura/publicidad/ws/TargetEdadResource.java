@@ -46,8 +46,8 @@ public class TargetEdadResource {
      */
     @GET
     @Produces(MediaType.APPLICATION_JSON+";charset=UTF-8")
-    @Path("/retrieveTargetE")
-    public List<com.teamj.arquitectura.publicidad.model.TargetEdad> retrieveTargetE() {
+    @Path("/retrieveTargetEdad")
+    public List<com.teamj.arquitectura.publicidad.model.TargetEdad> retrieveTargetEdad() {
         //TODO return proper representation object
         return targetEdadServicio.retrieveTargetE();
     }

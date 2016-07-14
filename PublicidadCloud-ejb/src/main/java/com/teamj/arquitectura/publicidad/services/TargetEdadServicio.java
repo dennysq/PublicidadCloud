@@ -35,7 +35,7 @@ public class TargetEdadServicio {
         TargetEdad temp = new TargetEdad();
 
         //temp.setEmpresa(te.getEmpresa());//Corregir esta parte
-        temp.setEmpresa(this.empresaDAO.findById(te.getEmpresa().getRuc(), true));
+        temp.setEmpresa(te.getEmpresa());
         temp.setNombre(te.getNombre());
         temp.setDescripcion(te.getDescripcion());
         temp.setEdadMinima(te.getEdadMinima());

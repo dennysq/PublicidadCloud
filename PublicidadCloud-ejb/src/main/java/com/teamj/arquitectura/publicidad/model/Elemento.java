@@ -23,8 +23,6 @@ import javax.persistence.Table;
 @Table(name = "ELEMENTO")
 public class Elemento implements Serializable{
     @Id
-//    @SequenceGenerator(name = "ELEMENTO_ID", sequenceName = "ELEMENTO_SEQ", allocationSize = 1)
-//    @GeneratedValue(strategy = GenerationType.AUTO, generator = "ELEMENTO_ID")
     @GeneratedValue(strategy = GenerationType.IDENTITY)//MYSQL&&SQL
     @Column(name = "ID_ELEMENTO")
     private Integer id;

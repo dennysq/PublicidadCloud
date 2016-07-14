@@ -17,6 +17,7 @@ import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.PUT;
 import javax.enterprise.context.RequestScoped;
+import javax.ws.rs.FormParam;
 import javax.ws.rs.POST;
 import javax.ws.rs.core.MediaType;
 
@@ -52,6 +53,23 @@ public class UsuarioResource {
     public List<com.teamj.arquitectura.publicidad.model.Usuario> retrieveUsers() {
         //TODO return proper representation object
         return usuarioServicio.retrieveUsers();        
+    }
+    
+//    @POST
+//    @Consumes(MediaType.APPLICATION_JSON)
+//    @Path("/retrieveUserLogged")
+//    public Usuario retrieveUserLogged(com.teamj.arquitectura.publicidad.model.Usuario content) {
+//        //TODO return proper representation object
+//        return usuarioServicio.retrieveUserLoged(content);        
+//    }
+    
+    @POST
+    @Consumes(MediaType.APPLICATION_FORM_URLENCODED)
+    @Produces(MediaType.APPLICATION_JSON+";charset=UTF-8")
+    @Path("/retrieveUserLogged")
+    public Usuario retrieveUserLogged(@FormParam ("usuario")String usuario,@FormParam ("password")String password) {
+        //TODO return proper representation object
+        return usuarioServicio.retrieveUserLoged(usuario,password);        
     }
 
     @POST

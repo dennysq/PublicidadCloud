@@ -36,8 +36,10 @@ public class UsuarioServicio {
         Usuario temp = new Usuario();
         
         temp.setUsername(u.getUsername());
-        String codecPassword = DigestUtils.md5Hex(u.getPassword());
-        temp.setPassword(codecPassword);
+//        String codecPassword = DigestUtils.md5Hex(u.getPassword());
+//        temp.setPassword(codecPassword);
+
+        temp.setPassword(u.getPassword());
         temp.setNombres(u.getNombres());
         usuarioDAO.insert(temp);
         //temp.setId(u.getId());
@@ -62,6 +64,8 @@ public class UsuarioServicio {
     
     public boolean editarUsu(Usuario u) throws ValidationException {
         boolean flag = false;
+//        String codecPassword = DigestUtils.md5Hex(u.getPassword());
+//        u.setPassword(codecPassword);
         try {
             this.usuarioDAO.update(u);
             flag = true;
@@ -78,4 +82,29 @@ public class UsuarioServicio {
         }
     }
     
+    public Usuario retrieveUserLoged(String usuario, String password){
+        Usuario tempUsu = new Usuario();
+        tempUsu.setUsername(usuario);
+
+        List<Usuario> tempList = this.usuarioDAO.find(tempUsu);
+        if (tempList != null && tempList.size() == 1) {
+            if (password.equals(tempList.get(0).getPassword())) {
+                return tempList.get(0);
+            }
+        }
+        return null;
+    }
+    
+//    public Usuario retrieveUserLoged(Usuario u){
+//        Usuario tempUsu = new Usuario();
+//        tempUsu.setUsername(u.getUsername());
+//
+//        List<Usuario> tempList = this.usuarioDAO.find(tempUsu);
+//        if (tempList != null && tempList.size() == 1) {
+//            if (DigestUtils.md5Hex(u.getPassword()).equals(tempList.get(0).getPassword())) {
+//                return tempList.get(0);
+//            }
+//        }
+//        return null;
+//    }
 }

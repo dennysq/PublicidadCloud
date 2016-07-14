@@ -51,6 +51,14 @@ public class EmpresaResource {
         //TODO return proper representation object
         return empresaServicio.retrieveEmp();        
     }
+    
+    @GET
+    @Produces(MediaType.APPLICATION_JSON+";charset=UTF-8")
+    @Path("/buscarEmpresa")
+    public boolean buscarEmpresa(com.teamj.arquitectura.publicidad.model.Empresa content) {
+        //TODO return proper representation object
+        return empresaServicio.buscarEmp(content);        
+    }
 
     @POST
     @Consumes(MediaType.APPLICATION_JSON)

@@ -55,8 +55,8 @@ public class ElementoResource {
     @POST
     @Consumes(MediaType.APPLICATION_JSON)
     @Path("/registrarElemento")
-    public void registrarElemento(com.teamj.arquitectura.publicidad.model.Elemento content) {
-        elementoServicio.registrarElem(content);
+    public boolean registrarElemento(com.teamj.arquitectura.publicidad.model.Elemento content) {
+        return elementoServicio.registrarElem(content);
     }
     
     @POST
