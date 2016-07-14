@@ -29,6 +29,7 @@ public class ApplicationConfig extends Application {
      * If required, comment out calling this method in getClasses().
      */
     private void addRestResourceClasses(Set<Class<?>> resources) {
+        resources.add(com.teamj.arquitectura.publicidad.ws.EmpresaResource.class);
         resources.add(com.teamj.arquitectura.publicidad.ws.UsuarioResource.class);
     }
     

@@ -7,8 +7,8 @@ package com.teamj.arquitectura.publicidad.services;
 
 /**
  *
- * @author Dennys
+ * @author Klever
  */
-public class NewClass {
+public class TargetEdadServicio {
     
 }

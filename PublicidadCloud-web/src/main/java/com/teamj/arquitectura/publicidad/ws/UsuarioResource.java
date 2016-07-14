@@ -17,6 +17,7 @@ import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.PUT;
 import javax.enterprise.context.RequestScoped;
+import javax.ws.rs.POST;
 import javax.ws.rs.core.MediaType;
 
 /**
@@ -53,12 +54,24 @@ public class UsuarioResource {
         return usuarioServicio.retrieveUsers();        
     }
 
-    /**
-     * PUT method for updating or creating an instance of UsuarioResource
-     * @param content representation for the resource
-     */
-    @PUT
+    @POST
     @Consumes(MediaType.APPLICATION_JSON)
-    public void putJson(com.teamj.arquitectura.publicidad.model.Usuario content) {
+    @Path("/registrarUsuario")
+    public void registrarUsuario(com.teamj.arquitectura.publicidad.model.Usuario content) {
+        usuarioServicio.registrarUsu(content);
+    }  
+    
+    @POST
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Path("/editarUsuario")
+    public boolean editarUsuario(com.teamj.arquitectura.publicidad.model.Usuario content) {
+        return usuarioServicio.editarUsu(content);
+    }
+    
+    @POST
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Path("/eliminarUsuario")
+    public void eliminarUsuario(com.teamj.arquitectura.publicidad.model.Usuario content) {
+        usuarioServicio.eliminarUsu(content.getId());
     }
 }

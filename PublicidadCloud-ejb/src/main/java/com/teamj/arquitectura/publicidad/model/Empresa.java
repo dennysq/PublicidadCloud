@@ -26,7 +26,7 @@ public class Empresa implements Serializable{
     private String ruc;
     
     @Column(name = "RAZON_SOCIAL")
-    private String nombre;
+    private String razonSocial;
     
     @Column(name = "EMAIL")
     private String email;
@@ -51,12 +51,12 @@ public class Empresa implements Serializable{
         this.ruc = ruc;
     }
 
-    public String getNombre() {
-        return nombre;
+    public String getRazonSocial() {
+        return razonSocial;
     }
 
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
+    public void setRazonSocial(String razonSocial) {
+        this.razonSocial = razonSocial;
     }
 
     public String getEmail() {
@@ -118,7 +118,6 @@ public class Empresa implements Serializable{
 
     @Override
     public String toString() {
-        return "Empresa{" + "ruc=" + ruc + ", nombre=" + nombre + ", email=" + email + ", telefono=" + telefono + ", direccion=" + direccion + ", representante=" + representante + '}';
+        return "Empresa{" + "ruc=" + ruc + ", razonSocial=" + razonSocial + ", email=" + email + ", telefono=" + telefono + ", direccion=" + direccion + ", representante=" + representante + '}';
     }
-
 }
