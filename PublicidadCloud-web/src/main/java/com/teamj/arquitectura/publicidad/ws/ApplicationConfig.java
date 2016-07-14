@@ -30,6 +30,7 @@ public class ApplicationConfig extends Application {
      */
     private void addRestResourceClasses(Set<Class<?>> resources) {
         resources.add(com.teamj.arquitectura.publicidad.ws.EmpresaResource.class);
+        resources.add(com.teamj.arquitectura.publicidad.ws.TargetEdadResource.class);
         resources.add(com.teamj.arquitectura.publicidad.ws.UsuarioResource.class);
     }
     
