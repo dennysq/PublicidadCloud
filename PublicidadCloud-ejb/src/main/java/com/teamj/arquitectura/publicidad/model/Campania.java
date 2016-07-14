@@ -28,8 +28,6 @@ import javax.persistence.Temporal;
 public class Campania implements Serializable{
 
     @Id
-//    @SequenceGenerator(name = "CAMPANIA_SEC", sequenceName = "CAMPANIA_SEQ", allocationSize = 1)
-//    @GeneratedValue(strategy = GenerationType.AUTO, generator = "CAMPANIA_SEC")
     @GeneratedValue(strategy = GenerationType.IDENTITY)//MYSQL&&SQL
     @Column(name = "SEC_CAMPANIA")
     private Integer sec;
@@ -155,7 +153,4 @@ public class Campania implements Serializable{
     public String toString() {
         return "Campania{" + "sec=" + sec + ", empresa=" + empresa + ", nombre=" + nombre + ", descripcion=" + descripcion + ", fecha_creacion=" + fecha_creacion + ", fecha_inicio=" + fecha_inicio + ", fecha_fin=" + fecha_fin + ", estado=" + estado + '}';
     }
-    
-    
-    
 }
