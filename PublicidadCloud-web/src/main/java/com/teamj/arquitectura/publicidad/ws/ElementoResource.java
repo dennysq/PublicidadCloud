@@ -46,8 +46,8 @@ public class ElementoResource {
      */
     @GET
     @Produces(MediaType.APPLICATION_JSON+";charset=UTF-8")
-    @Path("/retrieveElemento")
-    public List<com.teamj.arquitectura.publicidad.model.Elemento> retrieveElemento() {
+    @Path("/retrieveElementos")
+    public List<com.teamj.arquitectura.publicidad.model.Elemento> retrieveElementos() {
         //TODO return proper representation object
         return elementoServicio.retrieveElem();
     }
