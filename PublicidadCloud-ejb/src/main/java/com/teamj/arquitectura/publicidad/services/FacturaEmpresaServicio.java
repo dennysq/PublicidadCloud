@@ -19,7 +19,7 @@ import javax.validation.ValidationException;
  */
 @Stateless
 @LocalBean
-public class FacturaEmpresaService {
+public class FacturaEmpresaServicio {
     @EJB
     private FacturaEmpresaDAO facturaEmpresaDAO;
     
@@ -30,18 +30,21 @@ public class FacturaEmpresaService {
     public boolean registrarFacturaEmp(FacturaEmpresa fe) throws ValidationException {
         boolean flag = false;
         FacturaEmpresa temp = new FacturaEmpresa();
+        try {
+            temp.setEmpresa(fe.getEmpresa());
+            temp.setFecha_emision(fe.getFecha_emision());
+            temp.setSecuencial(fe.getSecuencial());
+            temp.setDireccion(fe.getDireccion());
+            temp.setTelefono(fe.getTelefono());
+            temp.setValorTotal(fe.getValorTotal());
+            temp.setPorcentajeIva(fe.getPorcentajeIva());
+            temp.setSubtotal(fe.getSubtotal());
 
-        temp.setFecha_emision(fe.getFecha_emision());
-        temp.setSecuencial(fe.getSecuencial());
-        temp.setDireccion(fe.getDireccion());
-        temp.setTelefono(fe.getTelefono());
-        temp.setValor_total(fe.getValor_total());
-        temp.setPorcentajeIva(fe.getPorcentajeIva());
-        temp.setSubtotal(fe.getSubtotal());
-
-        facturaEmpresaDAO.insert(temp);
-        
-        return true;
+            facturaEmpresaDAO.insert(temp);
+        } catch (Exception e) {
+            throw new ValidationException("Error al registrar", e);
+        }
+        return flag;
     }
     
     public boolean editarFacturaEmp(FacturaEmpresa fe) throws ValidationException {

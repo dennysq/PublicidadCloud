@@ -34,7 +34,7 @@ public class UsuarioServicio {
     public void registrarUsu(Usuario u) throws ValidationException {
         //boolean flag = false;
         Usuario temp = new Usuario();
-        
+        try {
         temp.setUsername(u.getUsername());
 //        String codecPassword = DigestUtils.md5Hex(u.getPassword());
 //        temp.setPassword(codecPassword);
@@ -42,24 +42,9 @@ public class UsuarioServicio {
         temp.setPassword(u.getPassword());
         temp.setNombres(u.getNombres());
         usuarioDAO.insert(temp);
-        //temp.setId(u.getId());
-
-//        List<Usuario> tempList = this.usuarioDAO.find(temp);
-//        if (tempList == null || tempList.isEmpty()) {//el ruc de empresa no existe
-//            try {
-//
-//                temp.setUsername(u.getUsername());
-//                String codecPassword = DigestUtils.md5Hex(u.getPassword());
-//                temp.setNombres(u.getNombres());
-//                
-//                usuarioDAO.insert(temp);
-//
-//                flag = true;
-//            } catch (Exception e) {
-//                throw new ValidationException("Error al crear un nuevo usuario", e);
-//            }
-//        }
-        //return flag;
+        } catch (Exception e) {
+            throw new ValidationException("Error al crear un nuevo usuario", e);
+        }
     }
     
     public boolean editarUsu(Usuario u) throws ValidationException {

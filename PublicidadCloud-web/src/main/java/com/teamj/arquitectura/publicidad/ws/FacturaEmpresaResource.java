@@ -6,7 +6,7 @@
 package com.teamj.arquitectura.publicidad.ws;
 
 import com.teamj.arquitectura.publicidad.model.FacturaEmpresa;
-import com.teamj.arquitectura.publicidad.services.FacturaEmpresaService;
+import com.teamj.arquitectura.publicidad.services.FacturaEmpresaServicio;
 import java.util.List;
 import javax.ejb.EJB;
 import javax.ws.rs.core.Context;
@@ -32,7 +32,7 @@ public class FacturaEmpresaResource {
     @Context
     private UriInfo context;
     @EJB
-    private FacturaEmpresaService facturaEmpresaService;
+    private FacturaEmpresaServicio facturaEmpresaService;
 
     /**
      * Creates a new instance of FacturaEmpresaResource

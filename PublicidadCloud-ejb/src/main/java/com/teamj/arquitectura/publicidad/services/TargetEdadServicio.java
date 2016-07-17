@@ -30,18 +30,23 @@ public class TargetEdadServicio {
         return this.targetEdadDAO.findAll();
     }
     
-    public void registrarTargetE(TargetEdad te) throws ValidationException {
-        //boolean flag = false;
+    public boolean registrarTargetE(TargetEdad te) throws ValidationException {
+        boolean flag = false;
         TargetEdad temp = new TargetEdad();
-
-        //temp.setEmpresa(te.getEmpresa());//Corregir esta parte
-        temp.setEmpresa(te.getEmpresa());
-        temp.setNombre(te.getNombre());
-        temp.setDescripcion(te.getDescripcion());
-        temp.setEdadMinima(te.getEdadMinima());
-        temp.setEdadMaxima(te.getEdadMaxima());
-        temp.setGenero(te.getGenero());
-        targetEdadDAO.insert(temp);
+        
+        try {
+            //temp.setEmpresa(te.getEmpresa());//Corregir esta parte
+            temp.setEmpresa(te.getEmpresa());
+            temp.setNombre(te.getNombre());
+            temp.setDescripcion(te.getDescripcion());
+            temp.setEdadMinima(te.getEdadMinima());
+            temp.setEdadMaxima(te.getEdadMaxima());
+            temp.setGenero(te.getGenero());
+            targetEdadDAO.insert(temp);
+        } catch (Exception e) {
+            throw new ValidationException("Error al registrar", e);
+        }
+        return flag;
     }
     
     public boolean editarTargetE(TargetEdad te) throws ValidationException {

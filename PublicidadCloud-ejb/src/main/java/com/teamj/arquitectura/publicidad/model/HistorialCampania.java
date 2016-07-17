@@ -40,19 +40,19 @@ public class HistorialCampania implements Serializable{
     
     @Column(name = "FECHA_COMPRA")
     @Temporal(javax.persistence.TemporalType.TIMESTAMP)
-    private Date fecha_compra;
+    private Date fechaCompra;
   
     @Column(name = "CLICS")
     private Integer clics;
     
     @Column(name = "COSTO_CLIC")
-    private BigDecimal costo_clic;
+    private BigDecimal costoClic;
     
     @Column(name = "DESPLIEGUES")
     private Integer despligues;
     
     @Column(name = "COSTO_DESPLIEGUE")
-    private BigDecimal costo_despligue;
+    private BigDecimal costoDespligue;
 
     public HistorialCampania() {
     }
@@ -73,12 +73,12 @@ public class HistorialCampania implements Serializable{
         this.campania = campania;
     }
 
-    public Date getFecha_compra() {
-        return fecha_compra;
+    public Date getFechaCompra() {
+        return fechaCompra;
     }
 
-    public void setFecha_compra(Date fecha_compra) {
-        this.fecha_compra = fecha_compra;
+    public void setFechaCompra(Date fechaCompra) {
+        this.fechaCompra = fechaCompra;
     }
 
     public Integer getClics() {
@@ -89,12 +89,12 @@ public class HistorialCampania implements Serializable{
         this.clics = clics;
     }
 
-    public BigDecimal getCosto_clic() {
-        return costo_clic;
+    public BigDecimal getCostoClic() {
+        return costoClic;
     }
 
-    public void setCosto_clic(BigDecimal costo_clic) {
-        this.costo_clic = costo_clic;
+    public void setCostoClic(BigDecimal costoClic) {
+        this.costoClic = costoClic;
     }
 
     public Integer getDespligues() {
@@ -105,12 +105,12 @@ public class HistorialCampania implements Serializable{
         this.despligues = despligues;
     }
 
-    public BigDecimal getCosto_despligue() {
-        return costo_despligue;
+    public BigDecimal getCostoDespligue() {
+        return costoDespligue;
     }
 
-    public void setCosto_despligue(BigDecimal costo_despligue) {
-        this.costo_despligue = costo_despligue;
+    public void setCostoDespligue(BigDecimal costoDespligue) {
+        this.costoDespligue = costoDespligue;
     }
 
     @Override
@@ -140,7 +140,6 @@ public class HistorialCampania implements Serializable{
 
     @Override
     public String toString() {
-        return "HistorialCampania{" + "id=" + id + ", campania=" + campania + ", fecha_compra=" + fecha_compra + ", clics=" + clics + ", costo_clic=" + costo_clic + ", despligues=" + despligues + ", costo_despligue=" + costo_despligue + '}';
+        return "HistorialCampania{" + "id=" + id + ", campania=" + campania + ", fechaCompra=" + fechaCompra + ", clics=" + clics + ", costoClic=" + costoClic + ", despligues=" + despligues + ", costoDespligue=" + costoDespligue + '}';
     }
-
 }

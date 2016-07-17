@@ -52,7 +52,7 @@ public class FacturaEmpresa implements Serializable{
     private String telefono;
     
     @Column(name = "VALOR_TOTAL")
-    private BigDecimal valor_total;
+    private BigDecimal valorTotal;
     
     @Column(name = "PORCENTAJE_IVA")
     private BigDecimal porcentajeIva;
@@ -111,12 +111,12 @@ public class FacturaEmpresa implements Serializable{
         this.telefono = telefono;
     }
 
-    public BigDecimal getValor_total() {
-        return valor_total;
+    public BigDecimal getValorTotal() {
+        return valorTotal;
     }
 
-    public void setValor_total(BigDecimal valor_total) {
-        this.valor_total = valor_total;
+    public void setValorTotal(BigDecimal valorTotal) {
+        this.valorTotal = valorTotal;
     }
 
     public BigDecimal getPorcentajeIva() {
@@ -162,6 +162,7 @@ public class FacturaEmpresa implements Serializable{
 
     @Override
     public String toString() {
-        return "FacturaEmpresa{" + "id=" + id + ", empresa=" + empresa + ", fecha_emision=" + fecha_emision + ", secuencial=" + secuencial + ", direccion=" + direccion + ", telefono=" + telefono + ", valor_total=" + valor_total + ", porcentajeIva=" + porcentajeIva + ", subtotal=" + subtotal + '}';
+        return "FacturaEmpresa{" + "id=" + id + ", empresa=" + empresa + ", fecha_emision=" + fecha_emision + ", secuencial=" + secuencial + ", direccion=" + direccion + ", telefono=" + telefono + ", valorTotal=" + valorTotal + ", porcentajeIva=" + porcentajeIva + ", subtotal=" + subtotal + '}';
     }
+
 }

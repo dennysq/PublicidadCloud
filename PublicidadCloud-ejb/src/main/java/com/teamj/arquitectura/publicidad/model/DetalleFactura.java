@@ -38,13 +38,13 @@ public class DetalleFactura implements Serializable{
     private String descripcion;
     
     @Column(name = "VALOR_UNITARIO")
-    private BigDecimal valor_unitario;
+    private BigDecimal valorUnitario;
     
     @Column(name = "VALOR_TOTAL")
-    private BigDecimal valor_total;
+    private BigDecimal valorTotal;
     
     @Column(name = "VALOR_DESCUENTO")
-    private BigDecimal valor_descuento;
+    private BigDecimal valorDescuento;
 
     public DetalleFactura() {
     }
@@ -81,28 +81,28 @@ public class DetalleFactura implements Serializable{
         this.descripcion = descripcion;
     }
 
-    public BigDecimal getValor_unitario() {
-        return valor_unitario;
+    public BigDecimal getValorUnitario() {
+        return valorUnitario;
     }
 
-    public void setValor_unitario(BigDecimal valor_unitario) {
-        this.valor_unitario = valor_unitario;
+    public void setValorUnitario(BigDecimal valorUnitario) {
+        this.valorUnitario = valorUnitario;
     }
 
-    public BigDecimal getValor_total() {
-        return valor_total;
+    public BigDecimal getValorTotal() {
+        return valorTotal;
     }
 
-    public void setValor_total(BigDecimal valor_total) {
-        this.valor_total = valor_total;
+    public void setValorTotal(BigDecimal valorTotal) {
+        this.valorTotal = valorTotal;
     }
 
-    public BigDecimal getValor_descuento() {
-        return valor_descuento;
+    public BigDecimal getValorDescuento() {
+        return valorDescuento;
     }
 
-    public void setValor_descuento(BigDecimal valor_descuento) {
-        this.valor_descuento = valor_descuento;
+    public void setValorDescuento(BigDecimal valorDescuento) {
+        this.valorDescuento = valorDescuento;
     }
 
     @Override
@@ -132,7 +132,8 @@ public class DetalleFactura implements Serializable{
 
     @Override
     public String toString() {
-        return "DetalleFactura{" + "facturaEmpresa=" + facturaEmpresa + ", codigoProducto=" + codigoProducto + ", cantidad=" + cantidad + ", descripcion=" + descripcion + ", valor_unitario=" + valor_unitario + ", valor_total=" + valor_total + ", valor_descuento=" + valor_descuento + '}';
+        return "DetalleFactura{" + "facturaEmpresa=" + facturaEmpresa + ", codigoProducto=" + codigoProducto + ", cantidad=" + cantidad + ", descripcion=" + descripcion + ", valorUnitario=" + valorUnitario + ", valorTotal=" + valorTotal + ", valorDescuento=" + valorDescuento + '}';
     }
+
 
 }
