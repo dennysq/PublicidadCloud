@@ -74,18 +74,16 @@ public class EmpresaServicio {
         }
     }
     
-    public boolean buscarEmp(Empresa emp){
+    public List<Empresa> buscarEmp(String ruc){
         Empresa tempEmp = new Empresa();
-        boolean flag = false;
-        tempEmp.setRuc(emp.getRuc());
+        tempEmp.setRuc(ruc);
 
         List<Empresa> tempList = this.empresaDAO.find(tempEmp);
         if (tempList != null && tempList.size() == 1) {
-            if (emp.getRuc().equals(tempList.get(0).getRuc())) {
-                flag = true;
-                return flag;
+            if (ruc.equals(tempList.get(0).getRuc())) {
+                
             }
         }
-        return flag;
+        return tempList;
     }
 }

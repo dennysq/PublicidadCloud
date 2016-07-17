@@ -23,11 +23,11 @@ public class EstadisticaCampaniaServicio {
     @EJB
     private EstadisticaCampaniaDAO estadisticaCampaniaDAO;
     
-    public List<EstadisticaCampania> retrieveCampaniaServicio() {
+    public List<EstadisticaCampania> retrieveEstadisticaServ() {
         return this.estadisticaCampaniaDAO.findAll();
     }
     
-    public boolean registrarCampaniaServicio(EstadisticaCampania ec) throws ValidationException {
+    public boolean registrarEstadisticaServ(EstadisticaCampania ec) throws ValidationException {
         boolean flag = false;
         EstadisticaCampania temp = new EstadisticaCampania();
         try {
@@ -40,7 +40,7 @@ public class EstadisticaCampaniaServicio {
         return flag;
     }
      
-    public boolean editarCampaniaServicio(EstadisticaCampania ec) throws ValidationException {
+    public boolean editarEstadisticaServ(EstadisticaCampania ec) throws ValidationException {
         boolean flag = false;
         try {
             this.estadisticaCampaniaDAO.update(ec);
@@ -51,7 +51,7 @@ public class EstadisticaCampaniaServicio {
         return flag;
     }
     
-    public void eliminarCampaniaServicio(Integer sec) {
+    public void eliminarEstadisticaServ(Integer sec) {
         EstadisticaCampania temp = this.estadisticaCampaniaDAO.findById(sec, false);
         if (temp != null) {
             this.estadisticaCampaniaDAO.remove(temp);

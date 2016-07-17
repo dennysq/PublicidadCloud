@@ -32,9 +32,12 @@ public class TargetEdad implements Serializable{
     @Column(name = "ID_TARGET_EDAD")
     private Integer id;
     
-    @ManyToOne
-    @JoinColumn(name = "RUC")
-    private Empresa empresa;
+//    @ManyToOne
+//    @JoinColumn(name = "RUC")
+//    private Empresa empresa;
+//    
+    @Column(name = "RUC")
+    private String ruc;
     
     @Column(name = "NOMBRE")
     private String nombre;
@@ -62,13 +65,22 @@ public class TargetEdad implements Serializable{
         this.id = id;
     }
 
-    public Empresa getEmpresa() {
-        return empresa;
+//    public Empresa getEmpresa() {
+//        return empresa;
+//    }
+//
+//    public void setEmpresa(Empresa empresa) {
+//        this.empresa = empresa;
+//    }
+
+    public String getRuc() {
+        return ruc;
     }
 
-    public void setEmpresa(Empresa empresa) {
-        this.empresa = empresa;
+    public void setRuc(String ruc) {
+        this.ruc = ruc;
     }
+    
 
     public String getNombre() {
         return nombre;
@@ -135,10 +147,16 @@ public class TargetEdad implements Serializable{
         return true;
     }
 
+//    @Override
+//    public String toString() {
+//        return "TargetEdad{" + "id=" + id + ", empresa=" + empresa + ", nombre=" + nombre + ", descripcion=" + descripcion + ", edadMinima=" + edadMinima + ", edadMaxima=" + edadMaxima + ", genero=" + genero + '}';
+//    }
+
     @Override
     public String toString() {
-        return "TargetEdad{" + "id=" + id + ", empresa=" + empresa + ", nombre=" + nombre + ", descripcion=" + descripcion + ", edadMinima=" + edadMinima + ", edadMaxima=" + edadMaxima + ", genero=" + genero + '}';
+        return "TargetEdad{" + "id=" + id + ", ruc=" + ruc + ", nombre=" + nombre + ", descripcion=" + descripcion + ", edadMinima=" + edadMinima + ", edadMaxima=" + edadMaxima + ", genero=" + genero + '}';
     }
+    
     
     
 }

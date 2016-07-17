@@ -36,6 +36,9 @@ public class Campania implements Serializable{
     @JoinColumn(name = "RUC")
     private Empresa empresa;
         
+//    @Column(name = "RUC")
+//    private String empresa;
+    
     @Column(name = "NOMBRE")
     private String nombre;
     
@@ -60,6 +63,17 @@ public class Campania implements Serializable{
     public Campania() {
     }
 
+    public Campania(Integer sec, Empresa empresa, String nombre, String descripcion, Date fechaCreacion, Date fechaInicio, Date fechaFin, String estado) {
+        this.sec = sec;
+        this.empresa = empresa;
+        this.nombre = nombre;
+        this.descripcion = descripcion;
+        this.fechaCreacion = fechaCreacion;
+        this.fechaInicio = fechaInicio;
+        this.fechaFin = fechaFin;
+        this.estado = estado;
+    }
+    
     public Integer getSec() {
         return sec;
     }

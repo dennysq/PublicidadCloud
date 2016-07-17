@@ -55,9 +55,9 @@ public class EmpresaResource {
     @GET
     @Produces(MediaType.APPLICATION_JSON+";charset=UTF-8")
     @Path("/buscarEmpresa")
-    public boolean buscarEmpresa(com.teamj.arquitectura.publicidad.model.Empresa content) {
+    public List<com.teamj.arquitectura.publicidad.model.Empresa> buscarEmpresa(com.teamj.arquitectura.publicidad.model.Empresa content) {
         //TODO return proper representation object
-        return empresaServicio.buscarEmp(content);        
+        return empresaServicio.buscarEmp(content.getRuc());        
     }
 
     @POST

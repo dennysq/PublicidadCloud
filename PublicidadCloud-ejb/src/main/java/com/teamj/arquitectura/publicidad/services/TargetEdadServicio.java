@@ -7,6 +7,7 @@ package com.teamj.arquitectura.publicidad.services;
 
 import com.teamj.arquitectura.publicidad.dao.EmpresaDAO;
 import com.teamj.arquitectura.publicidad.dao.TargetEdadDAO;
+import com.teamj.arquitectura.publicidad.model.Empresa;
 import com.teamj.arquitectura.publicidad.model.TargetEdad;
 import java.util.List;
 import javax.ejb.EJB;
@@ -32,19 +33,25 @@ public class TargetEdadServicio {
     
     public boolean registrarTargetE(TargetEdad te) throws ValidationException {
         boolean flag = false;
-        TargetEdad temp = new TargetEdad();
+        TargetEdad temp = new TargetEdad();        
+        Empresa tempE = new Empresa();
         
+        tempE.setRuc(te.getRuc());
+
+        List<Empresa> tempList = this.empresaDAO.find(tempE);
+        if (tempList != null && tempList.size() == 1){//buscar la empresa
         try {
-            //temp.setEmpresa(te.getEmpresa());//Corregir esta parte
-            temp.setEmpresa(te.getEmpresa());
+            temp.setRuc(te.getRuc());
             temp.setNombre(te.getNombre());
             temp.setDescripcion(te.getDescripcion());
             temp.setEdadMinima(te.getEdadMinima());
             temp.setEdadMaxima(te.getEdadMaxima());
             temp.setGenero(te.getGenero());
             targetEdadDAO.insert(temp);
+            flag=true;
         } catch (Exception e) {
             throw new ValidationException("Error al registrar", e);
+        }
         }
         return flag;
     }

@@ -11,6 +11,7 @@ import com.teamj.arquitectura.publicidad.model.Campania;
 import com.teamj.arquitectura.publicidad.model.Empresa;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import javax.ejb.EJB;
@@ -34,49 +35,36 @@ public class CampaniaServicio {
     
     public List<Campania> retrieveCampania() {
         
-        Campania temp = new Campania();
-        List<Campania> tempList = this.campaniaDAO.find(temp);
-//        if (tempList != null && tempList.size() == 1) {
-//            if (c.getEmpresa().getRuc().equals(tempList.get(0).getRuc())) {
-//                temp.setEmpresa(c.getEmpresa());
-//            }
-//        }
-        return this.campaniaDAO.findAll();
+       Campania temp = new Campania();
+       Empresa empresa;
+       List<Campania> campanias = this.campaniaDAO.findAll();
+       campanias.toString();
+      
+       return  campanias;
     }
     
-    public boolean registrarCampania(Empresa empresa, String nombre,String descripcion, String fechaC, String fechaI, String fechaF, String estado) throws ValidationException {
+    public boolean registrarCampania(String ruc, String nombre,String descripcion, String fechaC, String fechaI, String fechaF, String estado) throws ValidationException {
         boolean flag = false;
         Campania temp = new Campania();
         sdf = new SimpleDateFormat("yyyy-MM-dd");
-//        Empresa tempEmp = new Empresa();
-//        tempEmp.setRuc(c.getEmpresa().getRuc());
-//
-//        List<Empresa> tempList = this.empresaDAO.find(tempEmp);
-//        if (tempList != null && tempList.size() == 1) {
-//            if (c.getEmpresa().getRuc().equals(tempList.get(0).getRuc())) {
-//                temp.setEmpresa(c.getEmpresa());
-//            }
-//        }
-        try 
-        {
-            Date cfechaC = sdf.parse(fechaC);
-            Date cfechaI = sdf.parse(fechaI);
-            Date cfechaF = sdf.parse(fechaF);
-        } catch (ParseException ex) {
-            ex.printStackTrace();
-        }
+        Empresa tempEmp = new Empresa();
+        tempEmp.setRuc(ruc);
+
+        List<Empresa> tempList = this.empresaDAO.find(tempEmp);
+        if (tempList != null && tempList.size() == 1){//buscar la empresa
         try {
-            
-            temp.setEmpresa(empresa);
+            temp.setEmpresa(tempEmp);
             temp.setNombre(nombre);
             temp.setDescripcion(descripcion);
-//            temp.setFechaCreacion(cfechaC);
-//            temp.setFechaInicio(cfechaI);
-//            temp.setFechaFin(cfechaF);
+            temp.setFechaCreacion(sdf.parse(fechaC));
+            temp.setFechaInicio(sdf.parse(fechaI));
+            temp.setFechaFin(sdf.parse(fechaF));
             temp.setEstado(estado);
             campaniaDAO.insert(temp);
         } catch (Exception e) {
             throw new ValidationException("Error al editar Campania", e);
+        }
+        
         }
         return flag;
     }

@@ -16,6 +16,7 @@ import javax.ws.rs.Path;
 import javax.ws.rs.GET;
 import javax.ws.rs.Produces;
 import javax.enterprise.context.RequestScoped;
+import javax.ws.rs.FormParam;
 import javax.ws.rs.POST;
 import javax.ws.rs.core.MediaType;
 
@@ -47,12 +48,24 @@ public class CampaniaResource {
         //TODO return proper representation object
         return campaniaServicio.retrieveCampania();
     }
+    
+    @POST
+    @Consumes(MediaType.APPLICATION_FORM_URLENCODED)
+    @Produces(MediaType.APPLICATION_JSON+";charset=UTF-8")
+    @Path("/registrarCamp")
+    public boolean registrarCamp(@FormParam ("ruc")String ruc,@FormParam ("nombre")String nombre,
+            @FormParam ("descripcion")String descripcion,@FormParam ("fechaC")String fechaC,
+            @FormParam ("fechaI")String fechaI,@FormParam ("fechaF")String fechaF,
+            @FormParam ("estado")String estado) {
+        //TODO return proper representation object
+        return campaniaServicio.registrarCampania(ruc,nombre,descripcion,fechaC,fechaI,fechaF,estado);        
+    }
 
     @POST
     @Consumes(MediaType.APPLICATION_JSON)
     @Path("/registrarCampania")
     public void registrarCampania(com.teamj.arquitectura.publicidad.model.Campania content) {
-        campaniaServicio.registrarCampania(content);
+        //campaniaServicio.registrarCampania();
     }
     
     @POST

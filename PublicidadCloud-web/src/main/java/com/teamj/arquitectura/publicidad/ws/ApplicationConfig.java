@@ -32,6 +32,7 @@ public class ApplicationConfig extends Application {
         resources.add(com.teamj.arquitectura.publicidad.ws.CampaniaResource.class);
         resources.add(com.teamj.arquitectura.publicidad.ws.ElementoResource.class);
         resources.add(com.teamj.arquitectura.publicidad.ws.EmpresaResource.class);
+        resources.add(com.teamj.arquitectura.publicidad.ws.EstadisticaCampaniaResource.class);
         resources.add(com.teamj.arquitectura.publicidad.ws.FacturaEmpresaResource.class);
         resources.add(com.teamj.arquitectura.publicidad.ws.TargetEdadResource.class);
         resources.add(com.teamj.arquitectura.publicidad.ws.UsuarioResource.class);
