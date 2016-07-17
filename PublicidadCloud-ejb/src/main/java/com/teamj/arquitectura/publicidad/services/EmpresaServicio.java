@@ -7,6 +7,7 @@ package com.teamj.arquitectura.publicidad.services;
 
 import com.teamj.arquitectura.publicidad.dao.EmpresaDAO;
 import com.teamj.arquitectura.publicidad.model.Empresa;
+import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.Date;
 import java.util.List;
@@ -22,7 +23,7 @@ import org.apache.commons.codec.digest.DigestUtils;
  */
 @Stateless
 @LocalBean
-public class EmpresaServicio {
+public class EmpresaServicio implements Serializable{
     @EJB
     private EmpresaDAO empresaDAO;
     

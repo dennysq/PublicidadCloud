@@ -7,6 +7,7 @@ package com.teamj.arquitectura.publicidad.services;
 
 import com.teamj.arquitectura.publicidad.dao.UsuarioDAO;
 import com.teamj.arquitectura.publicidad.model.Usuario;
+import java.io.Serializable;
 import java.util.List;
 import javax.ejb.EJB;
 import javax.ejb.LocalBean;
@@ -20,7 +21,7 @@ import org.apache.commons.codec.digest.DigestUtils;
  */
 @Stateless
 @LocalBean
-public class UsuarioServicio {
+public class UsuarioServicio implements Serializable{
     @EJB
     private UsuarioDAO usuarioDAO;
     

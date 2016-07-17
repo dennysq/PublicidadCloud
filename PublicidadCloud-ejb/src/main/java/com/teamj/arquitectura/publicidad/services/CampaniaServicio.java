@@ -9,6 +9,7 @@ import com.teamj.arquitectura.publicidad.dao.CampaniaDAO;
 import com.teamj.arquitectura.publicidad.dao.EmpresaDAO;
 import com.teamj.arquitectura.publicidad.model.Campania;
 import com.teamj.arquitectura.publicidad.model.Empresa;
+import java.io.Serializable;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -25,7 +26,7 @@ import javax.validation.ValidationException;
  */
 @Stateless
 @LocalBean
-public class CampaniaServicio {
+public class CampaniaServicio implements Serializable{
     @EJB
     private CampaniaDAO campaniaDAO;
     @EJB

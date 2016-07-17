@@ -9,6 +9,7 @@ import com.teamj.arquitectura.publicidad.dao.EmpresaDAO;
 import com.teamj.arquitectura.publicidad.dao.TargetEdadDAO;
 import com.teamj.arquitectura.publicidad.model.Empresa;
 import com.teamj.arquitectura.publicidad.model.TargetEdad;
+import java.io.Serializable;
 import java.util.List;
 import javax.ejb.EJB;
 import javax.ejb.LocalBean;
@@ -21,7 +22,7 @@ import javax.validation.ValidationException;
  */
 @Stateless
 @LocalBean
-public class TargetEdadServicio {
+public class TargetEdadServicio implements Serializable{
     @EJB
     private TargetEdadDAO targetEdadDAO;
     @EJB

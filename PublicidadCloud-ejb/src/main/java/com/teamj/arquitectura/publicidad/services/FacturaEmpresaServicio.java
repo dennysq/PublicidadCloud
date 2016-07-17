@@ -7,6 +7,7 @@ package com.teamj.arquitectura.publicidad.services;
 
 import com.teamj.arquitectura.publicidad.dao.FacturaEmpresaDAO;
 import com.teamj.arquitectura.publicidad.model.FacturaEmpresa;
+import java.io.Serializable;
 import java.util.List;
 import javax.ejb.EJB;
 import javax.ejb.LocalBean;
@@ -19,7 +20,7 @@ import javax.validation.ValidationException;
  */
 @Stateless
 @LocalBean
-public class FacturaEmpresaServicio {
+public class FacturaEmpresaServicio implements Serializable{
     @EJB
     private FacturaEmpresaDAO facturaEmpresaDAO;
     

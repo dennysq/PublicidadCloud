@@ -7,6 +7,7 @@ package com.teamj.arquitectura.publicidad.services;
 
 import com.teamj.arquitectura.publicidad.dao.SegmentoDetalleCampaniaDAO;
 import com.teamj.arquitectura.publicidad.model.SegmentoDetalleCampania;
+import java.io.Serializable;
 import java.util.List;
 import javax.ejb.EJB;
 import javax.ejb.LocalBean;
@@ -19,7 +20,7 @@ import javax.validation.ValidationException;
  */
 @Stateless
 @LocalBean
-public class SegmentoDetalleCampaniaServicio {
+public class SegmentoDetalleCampaniaServicio implements Serializable{
     @EJB
     private SegmentoDetalleCampaniaDAO segmentoDetalleCampaniaDAO;
     
