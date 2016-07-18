@@ -6,6 +6,7 @@
 package com.teamj.arquitectura.publicidad.model;
 
 import java.io.Serializable;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.Objects;
 import javax.persistence.Column;
@@ -15,10 +16,9 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
-import org.eclipse.persistence.jpa.jpql.parser.DateTime;
+import javax.persistence.TemporalType;
 
 /**
  *
@@ -33,30 +33,30 @@ public class Campania implements Serializable{
     @Column(name = "SEC_CAMPANIA")
     private Integer sec;
     
-//    @ManyToOne
-//    @JoinColumn(name = "RUC")
-//    private Empresa empresa;
+    @ManyToOne
+    @JoinColumn(name = "RUC")
+    private Empresa empresa;
         
-    @Column(name = "RUC")
-    private String ruc;
-    
+//    @Column(name = "RUC")
+//    private String ruc;
+//    
     @Column(name = "NOMBRE")
     private String nombre;
     
     @Column(name = "DESCRIPCION")
     private String descripcion;
     
-    @Column(name = "FECHA_CREACION")
-    @Temporal(javax.persistence.TemporalType.TIMESTAMP)
-    private Date fechaCreacion;
+    @Column(name = "FECHA_CREACION")    
+    @Temporal(javax.persistence.TemporalType.DATE)
+    private java.util.Date fechaCreacion;
     
     @Column(name = "FECHA_INICIO")
-    @Temporal(javax.persistence.TemporalType.TIMESTAMP)
-    private Date fechaInicio;
+    @Temporal(javax.persistence.TemporalType.DATE)
+    private java.util.Date fechaInicio;
     
     @Column(name = "FECHA_FIN")
-    @Temporal(javax.persistence.TemporalType.TIMESTAMP)
-    private DateTime fechaFin;
+    @Temporal(javax.persistence.TemporalType.DATE)
+    private java.util.Date fechaFin;
     
     @Column(name = "ESTADO")
     private String estado;
@@ -64,22 +64,18 @@ public class Campania implements Serializable{
     public Campania() {
     }
 
-    public String getRuc() {
-        return ruc;
+    public Empresa getEmpresa() {
+        return empresa;
     }
 
-    public void setRuc(String ruc) {
-        this.ruc = ruc;
+    public void setEmpresa(Empresa empresa) {
+        this.empresa = empresa;
     }
 
-    public DateTime getFechaFin() {
+    public Date getFechaFin() {
         return fechaFin;
     }
-
-    public void setFechaFin(DateTime fechaFin) {
-        this.fechaFin = fechaFin;
-    }
-    
+   
     public Integer getSec() {
         return sec;
     }
@@ -113,12 +109,18 @@ public class Campania implements Serializable{
         this.fechaCreacion = fechaCreacion;
     }
 
-    public Date getFechaInicio() {
-        return fechaInicio;
+    public void setFechaFin(Date fechaFin) {
+        this.fechaFin = fechaFin;
     }
 
     public void setFechaInicio(Date fechaInicio) {
         this.fechaInicio = fechaInicio;
+    }
+
+    
+
+    public Date getFechaInicio() {
+        return fechaInicio;
     }
    
     public String getEstado() {
@@ -156,7 +158,7 @@ public class Campania implements Serializable{
 
     @Override
     public String toString() {
-        return "Campania{" + "sec=" + sec + ", ruc=" + ruc + ", nombre=" + nombre + ", descripcion=" + descripcion + ", fechaCreacion=" + fechaCreacion + ", fechaInicio=" + fechaInicio + ", fechaFin=" + fechaFin + ", estado=" + estado + '}';
+        return "Campania{" + "sec=" + sec + ", Empresa=" + empresa.toString() + ", nombre=" + nombre + ", descripcion=" + descripcion + ", fechaCreacion=" + fechaCreacion + ", fechaInicio=" + fechaInicio + ", fechaFin=" + fechaFin + ", estado=" + estado + '}';
     }
 
        

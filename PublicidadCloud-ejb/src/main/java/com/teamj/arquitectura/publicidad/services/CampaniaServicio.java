@@ -40,7 +40,7 @@ public class CampaniaServicio implements Serializable{
     }
     
     public boolean registrarCampania(String ruc, String nombre,String descripcion, String fechaC, String fechaI, String fechaF, String estado) throws ValidationException {
-        boolean flag = false;
+        /*boolean flag = false;
         Campania temp = new Campania();
         sdf = new SimpleDateFormat("yyyy-MM-dd");
         Empresa tempEmp = new Empresa();
@@ -61,8 +61,9 @@ public class CampaniaServicio implements Serializable{
             throw new ValidationException("Error al editar Campania", e);
         }
         
-        }
-        return flag;
+        }*/
+        //return flag;
+        return true;
     }
     
     public boolean editarCampania(Campania c) throws ValidationException {
