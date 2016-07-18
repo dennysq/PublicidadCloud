@@ -5,8 +5,13 @@
  */
 package com.teamj.arquitectura.publicidad.services;
 
+import com.teamj.arquitectura.publicidad.dao.CampaniaDAO;
 import com.teamj.arquitectura.publicidad.dao.DetalleCampaniaDAO;
+import com.teamj.arquitectura.publicidad.dao.ElementoDAO;
+import com.teamj.arquitectura.publicidad.model.Campania;
 import com.teamj.arquitectura.publicidad.model.DetalleCampania;
+import com.teamj.arquitectura.publicidad.model.DetalleCampaniaPK;
+import com.teamj.arquitectura.publicidad.model.Elemento;
 import java.io.Serializable;
 import java.util.List;
 import javax.ejb.EJB;
@@ -23,6 +28,10 @@ import javax.validation.ValidationException;
 public class DetalleCampaniaServicio implements Serializable{
     @EJB
     private DetalleCampaniaDAO detalleCampaniaDAO;
+    @EJB
+    private ElementoDAO elementoDAO;
+    @EJB
+    private CampaniaDAO campaniaDAO;
     
     public List<DetalleCampania> retrieveDetalleCamp() {
         return this.detalleCampaniaDAO.findAll();
@@ -31,11 +40,24 @@ public class DetalleCampaniaServicio implements Serializable{
     public boolean registrarDetalleCamp(DetalleCampania dc) throws ValidationException {
         boolean flag = false;
         DetalleCampania temp = new DetalleCampania();
+        Campania tempCamp = new Campania();
+        Elemento tempElem = new Elemento();
 
+        tempCamp.setSec(dc.getCampania().getSec());
+        tempElem.setId(dc.getElemento().getId());
+
+        List<Campania> tempListC = this.campaniaDAO.find(tempCamp);
+        List<Elemento> tempListE = this.elementoDAO.find(tempElem);
+        
+        if (tempListC != null && tempListC.size() == 1 && tempListE != null && tempListE.size() == 1){//buscar campania y elemento
         try {
-            temp.setDetalleCampaniaPK(dc.getDetalleCampaniaPK());
-            temp.setCampania(dc.getCampania());
-            temp.setElemento(dc.getElemento());
+            DetalleCampaniaPK detalleCampaniaPK=new DetalleCampaniaPK();
+            
+            detalleCampaniaPK.setSecCampania(dc.getCampania().getSec());
+            detalleCampaniaPK.setIdElemento(dc.getElemento().getId());
+            
+            temp.setDetalleCampaniaPK(detalleCampaniaPK);
+            
             temp.setDespligues(dc.getDespligues());
             temp.setClics(dc.getClics());
             temp.setModoFacturacion(dc.getModoFacturacion());
@@ -43,6 +65,7 @@ public class DetalleCampaniaServicio implements Serializable{
             flag = true;
         } catch (Exception e) {
             throw new ValidationException("Error al registrar", e);
+        }
         }
         return flag;
     }
@@ -58,10 +81,14 @@ public class DetalleCampaniaServicio implements Serializable{
         return flag;
     }
     
-    public void eliminarDetalleCamp(Integer id) {
-        DetalleCampania temp = this.detalleCampaniaDAO.findById(id, false);
-        if (temp != null) {
-            this.detalleCampaniaDAO.remove(temp);
+    public void eliminarDetalleCamp(DetalleCampania dc) {
+        DetalleCampania temp = new DetalleCampania();
+        temp.setCampania(dc.getCampania());
+        temp.setElemento(dc.getElemento());
+
+        List<DetalleCampania> tempList = this.detalleCampaniaDAO.find(temp);
+        if (tempList != null && tempList.size() == 1) {
+            this.detalleCampaniaDAO.remove(dc);
         }
     }
 }

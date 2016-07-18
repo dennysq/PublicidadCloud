@@ -5,13 +5,22 @@
  */
 package com.teamj.arquitectura.publicidad.services;
 
+import com.teamj.arquitectura.publicidad.dao.CampaniaDAO;
+import com.teamj.arquitectura.publicidad.dao.ElementoDAO;
 import com.teamj.arquitectura.publicidad.dao.SegmentoDetalleCampaniaDAO;
+import com.teamj.arquitectura.publicidad.dao.TargetEdadDAO;
+import com.teamj.arquitectura.publicidad.model.Campania;
+import com.teamj.arquitectura.publicidad.model.Elemento;
 import com.teamj.arquitectura.publicidad.model.SegmentoDetalleCampania;
+import com.teamj.arquitectura.publicidad.model.SegmentoDetalleCampaniaPK;
+import com.teamj.arquitectura.publicidad.model.TargetEdad;
 import java.io.Serializable;
+import java.lang.annotation.Target;
 import java.util.List;
 import javax.ejb.EJB;
 import javax.ejb.LocalBean;
 import javax.ejb.Stateless;
+import javax.swing.text.html.parser.TagElement;
 import javax.validation.ValidationException;
 
 /**
@@ -23,32 +32,60 @@ import javax.validation.ValidationException;
 public class SegmentoDetalleCampaniaServicio implements Serializable{
     @EJB
     private SegmentoDetalleCampaniaDAO segmentoDetalleCampaniaDAO;
+    @EJB
+    private ElementoDAO elementoDAO;
+    @EJB
+    private CampaniaDAO campaniaDAO;
+    @EJB
+    private TargetEdadDAO targetEdadDAO;
     
-    public List<SegmentoDetalleCampania> retrieveDetalleCampaniaServ() {
+    public List<SegmentoDetalleCampania> retrieveSegmentoDetalleCampServ() {
         return this.segmentoDetalleCampaniaDAO.findAll();
     }
     
-    public boolean registrarDetalleCampaniaServ(SegmentoDetalleCampania sdc) throws ValidationException {
+    public boolean registrarSegmentoDetalleCampServ(SegmentoDetalleCampania sdc) throws ValidationException {
         boolean flag = false;
         SegmentoDetalleCampania temp = new SegmentoDetalleCampania();
+        
+        Campania tempCamp = new Campania();
+        Elemento tempElem = new Elemento();
+        TargetEdad tempTar = new TargetEdad();
 
+        tempCamp.setSec(sdc.getCampania().getSec());
+        tempElem.setId(sdc.getElemento().getId());
+        tempTar.setId(sdc.getTargetEdad().getId());
+
+        List<Campania> tempListC = this.campaniaDAO.find(tempCamp);
+        List<Elemento> tempListE = this.elementoDAO.find(tempElem);
+        List<TargetEdad> tempListT = this.targetEdadDAO.find(tempTar);
+        
+        if (tempListC != null && tempListC.size() == 1 && tempListE != null && tempListE.size() == 1 &&
+               tempListT != null && tempListT.size() == 1 ){//buscar campania, elemento y target
+         
         try {
-//            temp.setSegmentoDetalleCampaniaPK(sdc.getSegmentoDetalleCampaniaPK().getSecCampania(),sdc.getSegmentoDetalleCampaniaPK().getIdElemento());
-            temp.setCampania(sdc.getCampania());
-            temp.setElemento(sdc.getElemento());
+            SegmentoDetalleCampaniaPK segmentoDetalleCampaniaPK=new SegmentoDetalleCampaniaPK();
+            
+            segmentoDetalleCampaniaPK.setSecCampania(sdc.getCampania().getSec());
+            segmentoDetalleCampaniaPK.setIdElemento(sdc.getElemento().getId());
+            
+            temp.setSegmentoDetalleCampaniaPK(segmentoDetalleCampaniaPK);
+            temp.setTargetEdad(sdc.getTargetEdad());
             temp.setTargetEdad(sdc.getTargetEdad());
             temp.setHoraInicio(sdc.getHoraInicio());
             temp.setHoraFin(sdc.getHoraFin());
-            
+            temp.setMaximoHora(sdc.getMaximoHora());
+            temp.setMinimoHora(sdc.getMinimoHora());
+
             segmentoDetalleCampaniaDAO.insert(temp);
             flag = true;
         } catch (Exception e) {
             throw new ValidationException("Error al registrar", e);
         }
+        }
         return flag;
     }
     
-    public boolean editarDetalleCampaniaServ(SegmentoDetalleCampania sdc) throws ValidationException {
+    public boolean editarSegmentoDetalleCampServ(SegmentoDetalleCampania sdc) throws ValidationException {
         boolean flag = false;
         try {
             this.segmentoDetalleCampaniaDAO.update(sdc);
@@ -59,10 +96,14 @@ public class SegmentoDetalleCampaniaServicio implements Serializable{
         return flag;
     }
     
-    public void eliminarDetalleCampaniaServ(Integer id) {
-        SegmentoDetalleCampania temp = this.segmentoDetalleCampaniaDAO.findById(id, false);
-        if (temp != null) {
-            this.segmentoDetalleCampaniaDAO.remove(temp);
+    public void eliminarSegmentoDetalleCampServ(SegmentoDetalleCampania sdc) {
+        SegmentoDetalleCampania temp = new SegmentoDetalleCampania();
+        temp.setCampania(sdc.getCampania());
+        temp.setElemento(sdc.getElemento());
+
+        List<SegmentoDetalleCampania> tempList = this.segmentoDetalleCampaniaDAO.find(temp);
+        if (tempList != null && tempList.size() == 1) {
+            this.segmentoDetalleCampaniaDAO.remove(sdc);
         }
     }
 }
