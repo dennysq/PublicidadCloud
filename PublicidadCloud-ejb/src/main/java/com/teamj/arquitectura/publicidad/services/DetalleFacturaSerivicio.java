@@ -6,7 +6,9 @@
 package com.teamj.arquitectura.publicidad.services;
 
 import com.teamj.arquitectura.publicidad.dao.DetalleFacturaDAO;
+import com.teamj.arquitectura.publicidad.dao.FacturaEmpresaDAO;
 import com.teamj.arquitectura.publicidad.model.DetalleFactura;
+import com.teamj.arquitectura.publicidad.model.FacturaEmpresa;
 import java.io.Serializable;
 import java.util.List;
 import javax.ejb.EJB;
@@ -23,6 +25,8 @@ import javax.validation.ValidationException;
 public class DetalleFacturaSerivicio implements Serializable{
     @EJB
     private DetalleFacturaDAO detalleFacturaDAO;
+    @EJB
+    private FacturaEmpresaDAO facturaEmpresaDAO;
     
     public List<DetalleFactura> retrieveDetalleFactura() {
         return this.detalleFacturaDAO.findAll();
@@ -30,8 +34,14 @@ public class DetalleFacturaSerivicio implements Serializable{
     
     public boolean registrarDetalleFactura(DetalleFactura df) throws ValidationException {
         boolean flag = false;
+        DetalleFactura temp = new DetalleFactura();
+        
+        FacturaEmpresa tempFEmp = new FacturaEmpresa();
+        tempFEmp.setId(df.getFacturaEmpresa().getId());
+
+        List<FacturaEmpresa> tempList = this.facturaEmpresaDAO.find(tempFEmp);
+        if (tempList != null && tempList.size() == 1){//buscar la factura
         try {
-            DetalleFactura temp = new DetalleFactura();
             temp.setFacturaEmpresa(df.getFacturaEmpresa());
             temp.setCodigoProducto(df.getCodigoProducto());
             temp.setCantidad(df.getCantidad());
@@ -41,10 +51,11 @@ public class DetalleFacturaSerivicio implements Serializable{
             temp.setValorDescuento(df.getValorDescuento());
 
             detalleFacturaDAO.insert(temp);
-             flag = true;
+            flag = true;
         } catch (Exception e) {
-            throw new ValidationException("Error al crear una nueva empresa", e);
+            throw new ValidationException("Error al registrar", e);
         }
+    }
         return flag;
     }
     

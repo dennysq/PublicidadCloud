@@ -28,8 +28,6 @@ import javax.persistence.Temporal;
 @Table(name = "FACTURA_EMPRESA")
 public class FacturaEmpresa implements Serializable{
     @Id
-//    @SequenceGenerator(name = "FACTURA_EMPRESA_ID", sequenceName = "FACTURA_EMPRESA_SEQ", allocationSize = 1)
-//    @GeneratedValue(strategy = GenerationType.AUTO, generator = "FACTURA_EMPRESA_ID")
     @GeneratedValue(strategy = GenerationType.IDENTITY)//MYSQL&&SQL
     @Column(name = "ID_FACTURA")
     private Integer id;
@@ -39,8 +37,8 @@ public class FacturaEmpresa implements Serializable{
     private Empresa empresa;
     
     @Column(name = "FECHA_EMISION")
-    @Temporal(javax.persistence.TemporalType.TIMESTAMP)
-    private Date fecha_emision;
+    @Temporal(javax.persistence.TemporalType.DATE)
+    private java.util.Date fechaEmision;
     
     @Column(name = "SECUENCIAL")
     private String secuencial;
@@ -79,12 +77,12 @@ public class FacturaEmpresa implements Serializable{
         this.empresa = empresa;
     }
 
-    public Date getFecha_emision() {
-        return fecha_emision;
+    public Date getFechaEmision() {
+        return fechaEmision;
     }
 
-    public void setFecha_emision(Date fecha_emision) {
-        this.fecha_emision = fecha_emision;
+    public void setFechaEmision(Date fechaEmision) {
+        this.fechaEmision = fechaEmision;
     }
 
     public String getSecuencial() {
@@ -162,7 +160,6 @@ public class FacturaEmpresa implements Serializable{
 
     @Override
     public String toString() {
-        return "FacturaEmpresa{" + "id=" + id + ", empresa=" + empresa + ", fecha_emision=" + fecha_emision + ", secuencial=" + secuencial + ", direccion=" + direccion + ", telefono=" + telefono + ", valorTotal=" + valorTotal + ", porcentajeIva=" + porcentajeIva + ", subtotal=" + subtotal + '}';
+        return "FacturaEmpresa{" + "id=" + id + ", empresa=" + empresa + ", fechaEmision=" + fechaEmision + ", secuencial=" + secuencial + ", direccion=" + direccion + ", telefono=" + telefono + ", valorTotal=" + valorTotal + ", porcentajeIva=" + porcentajeIva + ", subtotal=" + subtotal + '}';
     }
-
 }

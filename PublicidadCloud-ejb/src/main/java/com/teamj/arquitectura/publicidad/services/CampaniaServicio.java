@@ -39,36 +39,10 @@ public class CampaniaServicio implements Serializable{
        return  this.campaniaDAO.findAll();
     }
     
-//    public boolean registrarCampania(String ruc, String nombre,String descripcion, String fechaC, String fechaI, String fechaF, String estado) throws ValidationException {
-//        /*boolean flag = false;
-//        Campania temp = new Campania();
-//        sdf = new SimpleDateFormat("yyyy-MM-dd");
-//        Empresa tempEmp = new Empresa();
-//        tempEmp.setRuc(ruc);
-//
-//        List<Empresa> tempList = this.empresaDAO.find(tempEmp);
-//        if (tempList != null && tempList.size() == 1){//buscar la empresa
-//        try {
-//            temp.setRuc(ruc);
-//            temp.setNombre(nombre);
-//            temp.setDescripcion(descripcion);
-//            temp.setFechaCreacion(sdf.parse(fechaC));
-//            temp.setFechaInicio(sdf.parse(fechaI));
-//            //temp.setFechaFin(sdf.parse(fechaF));
-//            temp.setEstado(estado);
-//            campaniaDAO.insert(temp);
-//        } catch (Exception e) {
-//            throw new ValidationException("Error al editar Campania", e);
-//        }
-//        
-//        }*/
-//        //return flag;
-//        return true;
-//    }
-    
     public boolean registrarCampania(Campania c) throws ValidationException {
         boolean flag = false;
         Campania temp = new Campania();
+        
         Empresa tempEmp = new Empresa();
         tempEmp.setRuc(c.getEmpresa().getRuc());
 
