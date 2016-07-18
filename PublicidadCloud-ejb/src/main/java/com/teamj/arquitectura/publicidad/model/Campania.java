@@ -18,6 +18,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
+import org.eclipse.persistence.jpa.jpql.parser.DateTime;
 
 /**
  *
@@ -32,12 +33,12 @@ public class Campania implements Serializable{
     @Column(name = "SEC_CAMPANIA")
     private Integer sec;
     
-    @ManyToOne
-    @JoinColumn(name = "RUC")
-    private Empresa empresa;
+//    @ManyToOne
+//    @JoinColumn(name = "RUC")
+//    private Empresa empresa;
         
-//    @Column(name = "RUC")
-//    private String empresa;
+    @Column(name = "RUC")
+    private String ruc;
     
     @Column(name = "NOMBRE")
     private String nombre;
@@ -55,7 +56,7 @@ public class Campania implements Serializable{
     
     @Column(name = "FECHA_FIN")
     @Temporal(javax.persistence.TemporalType.TIMESTAMP)
-    private Date fechaFin;
+    private DateTime fechaFin;
     
     @Column(name = "ESTADO")
     private String estado;
@@ -63,15 +64,20 @@ public class Campania implements Serializable{
     public Campania() {
     }
 
-    public Campania(Integer sec, Empresa empresa, String nombre, String descripcion, Date fechaCreacion, Date fechaInicio, Date fechaFin, String estado) {
-        this.sec = sec;
-        this.empresa = empresa;
-        this.nombre = nombre;
-        this.descripcion = descripcion;
-        this.fechaCreacion = fechaCreacion;
-        this.fechaInicio = fechaInicio;
+    public String getRuc() {
+        return ruc;
+    }
+
+    public void setRuc(String ruc) {
+        this.ruc = ruc;
+    }
+
+    public DateTime getFechaFin() {
+        return fechaFin;
+    }
+
+    public void setFechaFin(DateTime fechaFin) {
         this.fechaFin = fechaFin;
-        this.estado = estado;
     }
     
     public Integer getSec() {
@@ -82,13 +88,6 @@ public class Campania implements Serializable{
         this.sec = sec;
     }
 
-    public Empresa getEmpresa() {
-        return empresa;
-    }
-
-    public void setEmpresa(Empresa empresa) {
-        this.empresa = empresa;
-    }
 
     public String getNombre() {
         return nombre;
@@ -121,16 +120,7 @@ public class Campania implements Serializable{
     public void setFechaInicio(Date fechaInicio) {
         this.fechaInicio = fechaInicio;
     }
-
-    public Date getFechaFin() {
-        return fechaFin;
-    }
-
-    public void setFechaFin(Date fechaFin) {
-        this.fechaFin = fechaFin;
-    }
-
-    
+   
     public String getEstado() {
         return estado;
     }
@@ -166,6 +156,8 @@ public class Campania implements Serializable{
 
     @Override
     public String toString() {
-        return "Campania{" + "sec=" + sec + ", empresa=" + empresa + ", nombre=" + nombre + ", descripcion=" + descripcion + ", fechaCreacion=" + fechaCreacion + ", fechaInicio=" + fechaInicio + ", fechaFin=" + fechaFin + ", estado=" + estado + '}';
-    }   
+        return "Campania{" + "sec=" + sec + ", ruc=" + ruc + ", nombre=" + nombre + ", descripcion=" + descripcion + ", fechaCreacion=" + fechaCreacion + ", fechaInicio=" + fechaInicio + ", fechaFin=" + fechaFin + ", estado=" + estado + '}';
+    }
+
+       
 }

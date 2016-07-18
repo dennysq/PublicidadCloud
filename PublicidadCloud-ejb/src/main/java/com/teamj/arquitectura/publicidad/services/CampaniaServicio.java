@@ -35,13 +35,8 @@ public class CampaniaServicio implements Serializable{
     private SimpleDateFormat sdf;
     
     public List<Campania> retrieveCampania() {
-        
-       Campania temp = new Campania();
-       Empresa empresa;
-       List<Campania> campanias = this.campaniaDAO.findAll();
-       campanias.toString();
-      
-       return  campanias;
+           
+       return  this.campaniaDAO.findAll();
     }
     
     public boolean registrarCampania(String ruc, String nombre,String descripcion, String fechaC, String fechaI, String fechaF, String estado) throws ValidationException {
@@ -54,12 +49,12 @@ public class CampaniaServicio implements Serializable{
         List<Empresa> tempList = this.empresaDAO.find(tempEmp);
         if (tempList != null && tempList.size() == 1){//buscar la empresa
         try {
-            temp.setEmpresa(tempEmp);
+            temp.setRuc(ruc);
             temp.setNombre(nombre);
             temp.setDescripcion(descripcion);
             temp.setFechaCreacion(sdf.parse(fechaC));
             temp.setFechaInicio(sdf.parse(fechaI));
-            temp.setFechaFin(sdf.parse(fechaF));
+            //temp.setFechaFin(sdf.parse(fechaF));
             temp.setEstado(estado);
             campaniaDAO.insert(temp);
         } catch (Exception e) {
