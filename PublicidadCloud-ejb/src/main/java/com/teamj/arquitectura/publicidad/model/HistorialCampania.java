@@ -28,8 +28,6 @@ import javax.persistence.Temporal;
 @Table(name = "HISTORIAL_CAMPANIA")
 public class HistorialCampania implements Serializable{
     @Id
-//    @SequenceGenerator(name = "HISTORIAL_CAMPANIA_ID", sequenceName = "HISTORIAL_CAMPANIA_SEQ", allocationSize = 1)
-//    @GeneratedValue(strategy = GenerationType.AUTO, generator = "HISTORIAL_CAMPANIA_ID")
     @GeneratedValue(strategy = GenerationType.IDENTITY)//MYSQL&&SQL
     @Column(name = "ID_HISTORIAL_CAMPANIA")
     private Integer id;
@@ -39,8 +37,8 @@ public class HistorialCampania implements Serializable{
     private Campania campania;
     
     @Column(name = "FECHA_COMPRA")
-    @Temporal(javax.persistence.TemporalType.TIMESTAMP)
-    private Date fechaCompra;
+    @Temporal(javax.persistence.TemporalType.DATE)
+    private java.util.Date fechaCompra;
   
     @Column(name = "CLICS")
     private Integer clics;

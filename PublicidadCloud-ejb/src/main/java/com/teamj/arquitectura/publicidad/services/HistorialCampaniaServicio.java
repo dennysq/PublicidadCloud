@@ -5,7 +5,9 @@
  */
 package com.teamj.arquitectura.publicidad.services;
 
+import com.teamj.arquitectura.publicidad.dao.CampaniaDAO;
 import com.teamj.arquitectura.publicidad.dao.HistorialCampaniaDAO;
+import com.teamj.arquitectura.publicidad.model.Campania;
 import com.teamj.arquitectura.publicidad.model.HistorialCampania;
 import java.io.Serializable;
 import java.util.List;
@@ -23,6 +25,8 @@ import javax.validation.ValidationException;
 public class HistorialCampaniaServicio implements Serializable{
     @EJB
     private HistorialCampaniaDAO historialCampaniaDAO;
+    @EJB
+    private CampaniaDAO campaniaDAO;
     
     public List<HistorialCampania> retrieveHistorialCamp() {
         return this.historialCampaniaDAO.findAll();
@@ -31,9 +35,13 @@ public class HistorialCampaniaServicio implements Serializable{
     public boolean registrarHistorialCamp(HistorialCampania hc) throws ValidationException {
         boolean flag = false;
         HistorialCampania temp = new HistorialCampania();
+        
+        Campania tempCamp = new Campania();
+        tempCamp.setSec(hc.getCampania().getSec());
 
+        List<Campania> tempList = this.campaniaDAO.find(tempCamp);
+        if (tempList != null && tempList.size() == 1){//buscar la campania
         try {
-            temp.setId(hc.getId());
             temp.setCampania(hc.getCampania());
             temp.setFechaCompra(hc.getFechaCompra());
             temp.setClics(hc.getClics());
@@ -46,6 +54,7 @@ public class HistorialCampaniaServicio implements Serializable{
             flag = true;
         } catch (Exception e) {
             throw new ValidationException("Error al registrar", e);
+        }
         }
         return flag;
     }

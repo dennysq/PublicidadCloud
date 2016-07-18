@@ -32,21 +32,16 @@ public class ElementoServicio implements Serializable{
         boolean flag = false;
         Elemento temp = new Elemento();
 
-        temp.setNombre(elem.getNombre());
-        List<Elemento> tempList = this.elementoDAO.find(temp);
-        if (tempList == null || tempList.isEmpty()) {//el ruc de empresa no existe
-            try {
-
+        try {
+            temp.setNombre(elem.getNombre());
             temp.setPosicion(elem.getPosicion());
             temp.setUrl(elem.getUrl());
             temp.setPath(elem.getPath());
 
             elementoDAO.insert(temp);
-
-                flag = true;
-            } catch (Exception e) {
-                throw new ValidationException("Error al crear un nuevo elemento", e);
-            }
+            flag = true;
+        } catch (Exception e) {
+            throw new ValidationException("Error al crear un nuevo elemento", e);
         }
         
         return flag;

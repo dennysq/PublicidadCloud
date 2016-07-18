@@ -30,10 +30,12 @@ public class ApplicationConfig extends Application {
      */
     private void addRestResourceClasses(Set<Class<?>> resources) {
         resources.add(com.teamj.arquitectura.publicidad.ws.CampaniaResource.class);
+        resources.add(com.teamj.arquitectura.publicidad.ws.DetalleFacturaResource.class);
         resources.add(com.teamj.arquitectura.publicidad.ws.ElementoResource.class);
         resources.add(com.teamj.arquitectura.publicidad.ws.EmpresaResource.class);
         resources.add(com.teamj.arquitectura.publicidad.ws.EstadisticaCampaniaResource.class);
         resources.add(com.teamj.arquitectura.publicidad.ws.FacturaEmpresaResource.class);
+        resources.add(com.teamj.arquitectura.publicidad.ws.HistorialCampaniaResource.class);
         resources.add(com.teamj.arquitectura.publicidad.ws.TargetEdadResource.class);
         resources.add(com.teamj.arquitectura.publicidad.ws.UsuarioResource.class);
     }
