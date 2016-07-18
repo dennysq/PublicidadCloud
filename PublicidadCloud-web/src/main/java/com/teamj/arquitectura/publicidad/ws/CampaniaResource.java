@@ -49,23 +49,23 @@ public class CampaniaResource {
         return campaniaServicio.retrieveCampania();
     }
     
-    @POST
-    @Consumes(MediaType.APPLICATION_FORM_URLENCODED)
-    @Produces(MediaType.APPLICATION_JSON+";charset=UTF-8")
-    @Path("/registrarCamp")
-    public boolean registrarCamp(@FormParam ("ruc")String ruc,@FormParam ("nombre")String nombre,
-            @FormParam ("descripcion")String descripcion,@FormParam ("fechaC")String fechaC,
-            @FormParam ("fechaI")String fechaI,@FormParam ("fechaF")String fechaF,
-            @FormParam ("estado")String estado) {
-        //TODO return proper representation object
-        return campaniaServicio.registrarCampania(ruc,nombre,descripcion,fechaC,fechaI,fechaF,estado);        
-    }
+//    @POST
+//    @Consumes(MediaType.APPLICATION_FORM_URLENCODED)
+//    @Produces(MediaType.APPLICATION_JSON+";charset=UTF-8")
+//    @Path("/registrarCamp")
+//    public boolean registrarCamp(@FormParam ("ruc")String ruc,@FormParam ("nombre")String nombre,
+//            @FormParam ("descripcion")String descripcion,@FormParam ("fechaC")String fechaC,
+//            @FormParam ("fechaI")String fechaI,@FormParam ("fechaF")String fechaF,
+//            @FormParam ("estado")String estado) {
+//        //TODO return proper representation object
+//        return campaniaServicio.registrarCampania(ruc,nombre,descripcion,fechaC,fechaI,fechaF,estado);        
+//    }
 
     @POST
     @Consumes(MediaType.APPLICATION_JSON)
     @Path("/registrarCampania")
-    public void registrarCampania(com.teamj.arquitectura.publicidad.model.Campania content) {
-        //campaniaServicio.registrarCampania();
+    public boolean registrarCampania(com.teamj.arquitectura.publicidad.model.Campania content) {
+        return campaniaServicio.registrarCampania(content);
     }
     
     @POST

@@ -36,10 +36,7 @@ public class Campania implements Serializable{
     @ManyToOne
     @JoinColumn(name = "RUC")
     private Empresa empresa;
-        
-//    @Column(name = "RUC")
-//    private String ruc;
-//    
+
     @Column(name = "NOMBRE")
     private String nombre;
     

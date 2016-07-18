@@ -39,31 +39,56 @@ public class CampaniaServicio implements Serializable{
        return  this.campaniaDAO.findAll();
     }
     
-    public boolean registrarCampania(String ruc, String nombre,String descripcion, String fechaC, String fechaI, String fechaF, String estado) throws ValidationException {
-        /*boolean flag = false;
+//    public boolean registrarCampania(String ruc, String nombre,String descripcion, String fechaC, String fechaI, String fechaF, String estado) throws ValidationException {
+//        /*boolean flag = false;
+//        Campania temp = new Campania();
+//        sdf = new SimpleDateFormat("yyyy-MM-dd");
+//        Empresa tempEmp = new Empresa();
+//        tempEmp.setRuc(ruc);
+//
+//        List<Empresa> tempList = this.empresaDAO.find(tempEmp);
+//        if (tempList != null && tempList.size() == 1){//buscar la empresa
+//        try {
+//            temp.setRuc(ruc);
+//            temp.setNombre(nombre);
+//            temp.setDescripcion(descripcion);
+//            temp.setFechaCreacion(sdf.parse(fechaC));
+//            temp.setFechaInicio(sdf.parse(fechaI));
+//            //temp.setFechaFin(sdf.parse(fechaF));
+//            temp.setEstado(estado);
+//            campaniaDAO.insert(temp);
+//        } catch (Exception e) {
+//            throw new ValidationException("Error al editar Campania", e);
+//        }
+//        
+//        }*/
+//        //return flag;
+//        return true;
+//    }
+    
+    public boolean registrarCampania(Campania c) throws ValidationException {
+        boolean flag = false;
         Campania temp = new Campania();
-        sdf = new SimpleDateFormat("yyyy-MM-dd");
         Empresa tempEmp = new Empresa();
-        tempEmp.setRuc(ruc);
+        tempEmp.setRuc(c.getEmpresa().getRuc());
 
         List<Empresa> tempList = this.empresaDAO.find(tempEmp);
         if (tempList != null && tempList.size() == 1){//buscar la empresa
         try {
-            temp.setRuc(ruc);
-            temp.setNombre(nombre);
-            temp.setDescripcion(descripcion);
-            temp.setFechaCreacion(sdf.parse(fechaC));
-            temp.setFechaInicio(sdf.parse(fechaI));
-            //temp.setFechaFin(sdf.parse(fechaF));
-            temp.setEstado(estado);
+            temp.setEmpresa(c.getEmpresa());
+            temp.setNombre(c.getNombre());
+            temp.setDescripcion(c.getDescripcion());
+            temp.setFechaCreacion(c.getFechaCreacion());
+            temp.setFechaInicio(c.getFechaInicio());
+            temp.setFechaFin(c.getFechaFin());
+            temp.setEstado(c.getEstado());
             campaniaDAO.insert(temp);
+            flag=true;
         } catch (Exception e) {
-            throw new ValidationException("Error al editar Campania", e);
+            throw new ValidationException("Error al registrar", e);
         }
-        
-        }*/
-        //return flag;
-        return true;
+        }
+        return flag;
     }
     
     public boolean editarCampania(Campania c) throws ValidationException {

@@ -37,12 +37,12 @@ public class TargetEdadServicio implements Serializable{
         TargetEdad temp = new TargetEdad();        
         Empresa tempE = new Empresa();
         
-        tempE.setRuc(te.getRuc());
+        tempE.setRuc(te.getEmpresa().getRuc());
 
         List<Empresa> tempList = this.empresaDAO.find(tempE);
         if (tempList != null && tempList.size() == 1){//buscar la empresa
         try {
-            temp.setRuc(te.getRuc());
+            temp.setEmpresa(te.getEmpresa());
             temp.setNombre(te.getNombre());
             temp.setDescripcion(te.getDescripcion());
             temp.setEdadMinima(te.getEdadMinima());

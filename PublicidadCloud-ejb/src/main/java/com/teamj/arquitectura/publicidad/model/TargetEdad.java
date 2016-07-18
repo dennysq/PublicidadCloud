@@ -26,19 +26,14 @@ import javax.persistence.Table;
 public class TargetEdad implements Serializable{
     
     @Id
-//    @SequenceGenerator(name = "TARGET_EDAD_ID", sequenceName = "TARGET_EDAD_SEQ", allocationSize = 1)
-//    @GeneratedValue(strategy = GenerationType.AUTO, generator = "TARGET_EDAD_ID")
     @GeneratedValue(strategy = GenerationType.IDENTITY)//MYSQL&&SQL
     @Column(name = "ID_TARGET_EDAD")
     private Integer id;
     
-//    @ManyToOne
-//    @JoinColumn(name = "RUC")
-//    private Empresa empresa;
-//    
-    @Column(name = "RUC")
-    private String ruc;
-    
+    @ManyToOne
+    @JoinColumn(name = "RUC")
+    private Empresa empresa;
+
     @Column(name = "NOMBRE")
     private String nombre;
     
@@ -65,22 +60,13 @@ public class TargetEdad implements Serializable{
         this.id = id;
     }
 
-//    public Empresa getEmpresa() {
-//        return empresa;
-//    }
-//
-//    public void setEmpresa(Empresa empresa) {
-//        this.empresa = empresa;
-//    }
-
-    public String getRuc() {
-        return ruc;
+    public Empresa getEmpresa() {
+        return empresa;
     }
 
-    public void setRuc(String ruc) {
-        this.ruc = ruc;
+    public void setEmpresa(Empresa empresa) {
+        this.empresa = empresa;
     }
-    
 
     public String getNombre() {
         return nombre;
@@ -147,16 +133,8 @@ public class TargetEdad implements Serializable{
         return true;
     }
 
-//    @Override
-//    public String toString() {
-//        return "TargetEdad{" + "id=" + id + ", empresa=" + empresa + ", nombre=" + nombre + ", descripcion=" + descripcion + ", edadMinima=" + edadMinima + ", edadMaxima=" + edadMaxima + ", genero=" + genero + '}';
-//    }
-
     @Override
     public String toString() {
-        return "TargetEdad{" + "id=" + id + ", ruc=" + ruc + ", nombre=" + nombre + ", descripcion=" + descripcion + ", edadMinima=" + edadMinima + ", edadMaxima=" + edadMaxima + ", genero=" + genero + '}';
+        return "TargetEdad{" + "id=" + id + ", empresa=" + empresa + ", nombre=" + nombre + ", descripcion=" + descripcion + ", edadMinima=" + edadMinima + ", edadMaxima=" + edadMaxima + ", genero=" + genero + '}';
     }
-    
-    
-    
 }
