@@ -39,6 +39,10 @@ public class SegmentoDetalleCampaniaServicio implements Serializable{
     @EJB
     private TargetEdadDAO targetEdadDAO;
     
+    public SegmentoDetalleCampania obtenerPorId(SegmentoDetalleCampaniaPK id) {
+        return this.segmentoDetalleCampaniaDAO.findById(id, false);
+    }
+    
     public List<SegmentoDetalleCampania> retrieveSegmentoDetalleCampServ() {
         return this.segmentoDetalleCampaniaDAO.findAll();
     }
@@ -69,6 +73,8 @@ public class SegmentoDetalleCampaniaServicio implements Serializable{
             segmentoDetalleCampaniaPK.setIdElemento(sdc.getElemento().getId());
             
             temp.setSegmentoDetalleCampaniaPK(segmentoDetalleCampaniaPK);
+            
+            if(obtenerPorId(segmentoDetalleCampaniaPK)==null){
             temp.setTargetEdad(sdc.getTargetEdad());
             temp.setTargetEdad(sdc.getTargetEdad());
             temp.setHoraInicio(sdc.getHoraInicio());
@@ -78,6 +84,7 @@ public class SegmentoDetalleCampaniaServicio implements Serializable{
 
             segmentoDetalleCampaniaDAO.insert(temp);
             flag = true;
+            }
         } catch (Exception e) {
             throw new ValidationException("Error al registrar", e);
         }
