@@ -106,11 +106,8 @@ public class SegmentoDetalleCampaniaServicio implements Serializable{
     }
     
     public void eliminarSegmentoDetalleCampServ(SegmentoDetalleCampania sdc) {
-        SegmentoDetalleCampania temp = new SegmentoDetalleCampania();
-        temp.setCampania(sdc.getCampania());
-        temp.setElemento(sdc.getElemento());
 
-        List<SegmentoDetalleCampania> tempList = this.segmentoDetalleCampaniaDAO.find(temp);
+        List<SegmentoDetalleCampania> tempList = this.segmentoDetalleCampaniaDAO.find(sdc);
         if (tempList != null && tempList.size() == 1) {
             this.segmentoDetalleCampaniaDAO.remove(sdc);
         }

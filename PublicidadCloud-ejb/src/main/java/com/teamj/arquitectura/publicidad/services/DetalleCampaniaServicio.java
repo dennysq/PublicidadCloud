@@ -92,11 +92,7 @@ public class DetalleCampaniaServicio implements Serializable{
     }
     
     public void eliminarDetalleCamp(DetalleCampania dc) {
-        DetalleCampania temp = new DetalleCampania();
-        temp.setCampania(dc.getCampania());
-        temp.setElemento(dc.getElemento());
-
-        List<DetalleCampania> tempList = this.detalleCampaniaDAO.find(temp);
+        List<DetalleCampania> tempList = this.detalleCampaniaDAO.find(dc);
         if (tempList != null && tempList.size() == 1) {
             this.detalleCampaniaDAO.remove(dc);
         }
