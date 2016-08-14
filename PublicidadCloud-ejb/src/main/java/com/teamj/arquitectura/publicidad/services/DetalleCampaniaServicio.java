@@ -68,6 +68,8 @@ public class DetalleCampaniaServicio implements Serializable{
             temp.setDespligues(dc.getDespligues());
             temp.setClics(dc.getClics());
             temp.setModoFacturacion(dc.getModoFacturacion());
+            temp.setCampania(dc.getCampania());
+            temp.setElemento(dc.getElemento());
             detalleCampaniaDAO.insert(temp);
             flag = true;
             }

@@ -76,13 +76,15 @@ public class SegmentoDetalleCampaniaServicio implements Serializable{
             
             if(obtenerPorId(segmentoDetalleCampaniaPK)==null){
             temp.setTargetEdad(sdc.getTargetEdad());
-            temp.setTargetEdad(sdc.getTargetEdad());
             temp.setHoraInicio(sdc.getHoraInicio());
             temp.setHoraFin(sdc.getHoraFin());
             temp.setMaximoHora(sdc.getMaximoHora());
             temp.setMinimoHora(sdc.getMinimoHora());
 
+            temp.setCampania(sdc.getCampania());
+            temp.setElemento(sdc.getElemento());
             segmentoDetalleCampaniaDAO.insert(temp);
+            
             flag = true;
             }
         } catch (Exception e) {
