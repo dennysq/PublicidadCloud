@@ -33,16 +33,22 @@ public class DetalleCampaniaServicio implements Serializable{
     @EJB
     private CampaniaDAO campaniaDAO;
     
+    public DetalleCampania obtenerPorId(DetalleCampaniaPK id) {
+        return this.detalleCampaniaDAO.findById(id, false);
+    }
+    
     public List<DetalleCampania> retrieveDetalleCamp() {
         return this.detalleCampaniaDAO.findAll();
     }
     
     public boolean registrarDetalleCamp(DetalleCampania dc) throws ValidationException {
         boolean flag = false;
+        
         DetalleCampania temp = new DetalleCampania();
+        DetalleCampania temp2 = new DetalleCampania();
         Campania tempCamp = new Campania();
         Elemento tempElem = new Elemento();
-
+        
         tempCamp.setSec(dc.getCampania().getSec());
         tempElem.setId(dc.getElemento().getId());
 
@@ -58,11 +64,13 @@ public class DetalleCampaniaServicio implements Serializable{
             
             temp.setDetalleCampaniaPK(detalleCampaniaPK);
             
+            if(obtenerPorId(detalleCampaniaPK)==null){
             temp.setDespligues(dc.getDespligues());
             temp.setClics(dc.getClics());
             temp.setModoFacturacion(dc.getModoFacturacion());
             detalleCampaniaDAO.insert(temp);
             flag = true;
+            }
         } catch (Exception e) {
             throw new ValidationException("Error al registrar", e);
         }

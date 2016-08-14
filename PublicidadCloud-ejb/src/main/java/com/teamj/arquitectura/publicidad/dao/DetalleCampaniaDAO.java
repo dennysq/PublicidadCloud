@@ -7,6 +7,7 @@ package com.teamj.arquitectura.publicidad.dao;
 
 import com.persist.common.dao.DefaultGenericDAOImple;
 import com.teamj.arquitectura.publicidad.model.DetalleCampania;
+import com.teamj.arquitectura.publicidad.model.DetalleCampaniaPK;
 import javax.ejb.LocalBean;
 import javax.ejb.Stateless;
 
@@ -16,7 +17,7 @@ import javax.ejb.Stateless;
  */
 @LocalBean
 @Stateless
-public class DetalleCampaniaDAO extends DefaultGenericDAOImple<DetalleCampania, Integer>{
+public class DetalleCampaniaDAO extends DefaultGenericDAOImple<DetalleCampania, DetalleCampaniaPK>{
     public DetalleCampaniaDAO() {
             super(DetalleCampania.class);
     }
