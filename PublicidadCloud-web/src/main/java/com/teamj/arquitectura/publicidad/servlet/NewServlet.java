@@ -5,29 +5,20 @@
  */
 package com.teamj.arquitectura.publicidad.servlet;
 
-import com.teamj.arquitectura.publicidad.model.SegmentoDetalleCampania;
-import com.teamj.arquitectura.publicidad.services.SegmentoDetalleCampaniaServicio;
-import java.io.ByteArrayInputStream;
-import java.io.File;
 import java.io.IOException;
-import java.nio.file.Files;
-import java.util.ArrayList;
-import java.util.List;
-import javax.ejb.EJB;
+import java.io.PrintWriter;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import org.apache.commons.codec.binary.Base64;
-import org.apache.commons.io.IOUtils;
 
 /**
  *
- * @author Dennys
+ * @author Andres
  */
-@WebServlet(name = "imagePublicidad", urlPatterns = {"/imagePublicidad"})
-public class ImageServlet extends HttpServlet {
+@WebServlet(name = "NewServlet", urlPatterns = {"/NewServlet"})
+public class NewServlet extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -38,39 +29,21 @@ public class ImageServlet extends HttpServlet {
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
-    //String imagesPath = "C:\\hitchus";
-    String imagesPath = "/home/ec2-user/hitchus";
-    @EJB
-    SegmentoDetalleCampaniaServicio sdc;
-
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-
-        String base64Image = "";
-        int edad = Integer.parseInt(request.getParameter("edad"));
-        String genero = request.getParameter("genero");
-        List<SegmentoDetalleCampania> tempServicio = sdc.retrieveSegmentoDetalleCampServ();
-        for (int i = 3; i < tempServicio.size(); i++) {
-            if (edad > tempServicio.get(i).getTargetEdad().getEdadMinima() && edad < tempServicio.get(i).getTargetEdad().getEdadMaxima() && tempServicio.get(i).getTargetEdad().getGenero().contains(genero)) {
-                base64Image = tempServicio.get(i).getElemento().getPath();
-                break;
-            }
+        try (PrintWriter out = response.getWriter()) {
+            /* TODO output your page here. You may use following sample code. */
+            out.println("<!DOCTYPE html>");
+            out.println("<html>");
+            out.println("<head>");
+            out.println("<title>Servlet NewServlet</title>");            
+            out.println("</head>");
+            out.println("<body>");
+            out.println("<h1>Servlet NewServlet at " + request.getContextPath() + "</h1>");
+            out.println("</body>");
+            out.println("</html>");
         }
-        byte[] imageByteArray = decodeImage(base64Image);
-
-        response.setHeader("Content-Type", "image/jpg;image/png");
-        response.setHeader("Content-Length", String.valueOf(imageByteArray.length));
-        response.setHeader("Content-Disposition", "inline; filename=\"publicidad.jpg\"");
-        //    System.out.println("" + file.getAbsolutePath());
-        ByteArrayInputStream in = new ByteArrayInputStream(imageByteArray);
-        IOUtils.copy(in, response.getOutputStream());
-        //Files.copy(file.toPath(), response.getOutputStream());
-
-    }
-
-    public static byte[] decodeImage(String imageDataString) {
-        return Base64.decodeBase64(imageDataString);
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

@@ -34,7 +34,7 @@ public class DetalleCampania implements Serializable{
     private Elemento elemento;
      
     @Column(name = "DESPLIEGUES")
-    private Integer despligues;
+    private Integer despliegues;
     
     @Column(name = "CLICS")
     private Integer clics;
@@ -69,12 +69,12 @@ public class DetalleCampania implements Serializable{
         this.elemento = elemento;
     }
 
-    public Integer getDespligues() {
-        return despligues;
+    public Integer getDespliegues() {
+        return despliegues;
     }
 
-    public void setDespligues(Integer despligues) {
-        this.despligues = despligues;
+    public void setDespliegues(Integer despliegues) {
+        this.despliegues = despliegues;
     }
 
     public Integer getClics() {
@@ -120,7 +120,7 @@ public class DetalleCampania implements Serializable{
 
     @Override
     public String toString() {
-        return "DetalleCampania{" + "detalleCampaniaPK=" + detalleCampaniaPK + ", despligues=" + despligues + ", clics=" + clics + ", modoFacturacion=" + modoFacturacion + '}';
+        return "DetalleCampania{" + "detalleCampaniaPK=" + detalleCampaniaPK + ", despligues=" + despliegues + ", clics=" + clics + ", modoFacturacion=" + modoFacturacion + '}';
     }
 
 }

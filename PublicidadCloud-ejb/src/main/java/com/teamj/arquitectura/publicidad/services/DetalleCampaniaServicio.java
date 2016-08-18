@@ -45,34 +45,32 @@ public class DetalleCampaniaServicio implements Serializable{
         boolean flag = false;
         
         DetalleCampania temp = new DetalleCampania();
-        DetalleCampania temp2 = new DetalleCampania();
         Campania tempCamp = new Campania();
         Elemento tempElem = new Elemento();
-        
+
         tempCamp.setSec(dc.getCampania().getSec());
         tempElem.setId(dc.getElemento().getId());
-
+        
         List<Campania> tempListC = this.campaniaDAO.find(tempCamp);
         List<Elemento> tempListE = this.elementoDAO.find(tempElem);
         
         if (tempListC != null && tempListC.size() == 1 && tempListE != null && tempListE.size() == 1){//buscar campania y elemento
         try {
-            DetalleCampaniaPK detalleCampaniaPK=new DetalleCampaniaPK();
-            
+            DetalleCampaniaPK detalleCampaniaPK=new DetalleCampaniaPK();            
             detalleCampaniaPK.setSecCampania(dc.getCampania().getSec());
             detalleCampaniaPK.setIdElemento(dc.getElemento().getId());
-            
             temp.setDetalleCampaniaPK(detalleCampaniaPK);
             
             if(obtenerPorId(detalleCampaniaPK)==null){
-            temp.setDespligues(dc.getDespligues());
+            
+            temp.setDespliegues(dc.getDespliegues());
             temp.setClics(dc.getClics());
             temp.setModoFacturacion(dc.getModoFacturacion());
             temp.setCampania(dc.getCampania());
             temp.setElemento(dc.getElemento());
             detalleCampaniaDAO.insert(temp);
             flag = true;
-            }
+        }
         } catch (Exception e) {
             throw new ValidationException("Error al registrar", e);
         }
@@ -92,9 +90,15 @@ public class DetalleCampaniaServicio implements Serializable{
     }
     
     public void eliminarDetalleCamp(DetalleCampania dc) {
-        List<DetalleCampania> tempList = this.detalleCampaniaDAO.find(dc);
-        if (tempList != null && tempList.size() == 1) {
-            this.detalleCampaniaDAO.remove(dc);
+        
+         DetalleCampaniaPK detalleCampaniaPK=new DetalleCampaniaPK();            
+         detalleCampaniaPK.setSecCampania(dc.getCampania().getSec());
+         detalleCampaniaPK.setIdElemento(dc.getElemento().getId());
+            
+        DetalleCampania tempDC = obtenerPorId(detalleCampaniaPK);
+                
+        if (tempDC!=null) {
+            this.detalleCampaniaDAO.remove(tempDC);
         }
     }
 }

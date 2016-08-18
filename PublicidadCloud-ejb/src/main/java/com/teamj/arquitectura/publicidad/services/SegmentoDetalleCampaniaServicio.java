@@ -10,6 +10,7 @@ import com.teamj.arquitectura.publicidad.dao.ElementoDAO;
 import com.teamj.arquitectura.publicidad.dao.SegmentoDetalleCampaniaDAO;
 import com.teamj.arquitectura.publicidad.dao.TargetEdadDAO;
 import com.teamj.arquitectura.publicidad.model.Campania;
+import com.teamj.arquitectura.publicidad.model.DetalleCampaniaPK;
 import com.teamj.arquitectura.publicidad.model.Elemento;
 import com.teamj.arquitectura.publicidad.model.SegmentoDetalleCampania;
 import com.teamj.arquitectura.publicidad.model.SegmentoDetalleCampaniaPK;
@@ -107,9 +108,15 @@ public class SegmentoDetalleCampaniaServicio implements Serializable{
     
     public void eliminarSegmentoDetalleCampServ(SegmentoDetalleCampania sdc) {
 
-        List<SegmentoDetalleCampania> tempList = this.segmentoDetalleCampaniaDAO.find(sdc);
-        if (tempList != null && tempList.size() == 1) {
-            this.segmentoDetalleCampaniaDAO.remove(sdc);
+        SegmentoDetalleCampaniaPK detalleCampaniaPK=new SegmentoDetalleCampaniaPK();
+        detalleCampaniaPK.setSecCampania(sdc.getCampania().getSec());
+        detalleCampaniaPK.setIdElemento(sdc.getElemento().getId());
+        
+        SegmentoDetalleCampania tempSDC = obtenerPorId(detalleCampaniaPK);
+            
+            //if(obtenerPorId(detalleCampaniaPK)==null)
+        if (tempSDC!=null) {
+            this.segmentoDetalleCampaniaDAO.remove(tempSDC);
         }
     }
 }
