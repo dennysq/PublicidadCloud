@@ -13,6 +13,7 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 import javax.ejb.EJB;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -51,17 +52,26 @@ public class ImageServlet extends HttpServlet {
         int edad = Integer.parseInt(request.getParameter("edad"));
         String genero = request.getParameter("genero");
         List<SegmentoDetalleCampania> tempServicio = sdc.retrieveSegmentoDetalleCampServ();
-        for (int i = 3; i < tempServicio.size(); i++) {
-            if (edad > tempServicio.get(i).getTargetEdad().getEdadMinima() && edad < tempServicio.get(i).getTargetEdad().getEdadMaxima() && tempServicio.get(i).getTargetEdad().getGenero().contains(genero)) {
-                base64Image = tempServicio.get(i).getElemento().getPath();
-                break;
+        
+        List<Integer> listaAuxiliar = new ArrayList<>();
+        
+        for (int i = 0; i < tempServicio.size(); i++) {
+            if (edad >= tempServicio.get(i).getTargetEdad().getEdadMinima() && edad < tempServicio.get(i).getTargetEdad().getEdadMaxima() && tempServicio.get(i).getTargetEdad().getGenero().equals(genero)) {
+                //base64Image = tempServicio.get(i).getElemento().getPath();
+                listaAuxiliar.add(i);
             }
         }
+        
+        Random r = new Random();
+        int rValue=r.nextInt(listaAuxiliar.size());
+        base64Image = tempServicio.get(listaAuxiliar.get(rValue)).getElemento().getPath();
+        
         byte[] imageByteArray = decodeImage(base64Image);
 
         response.setHeader("Content-Type", "image/jpg;image/png");
         response.setHeader("Content-Length", String.valueOf(imageByteArray.length));
-        response.setHeader("Content-Disposition", "inline; filename=\"publicidad.jpg\"");
+        response.setHeader("Content-Disposition", "inline; filename=\"publicidad.jpg\"");                
+        
         //    System.out.println("" + file.getAbsolutePath());
         ByteArrayInputStream in = new ByteArrayInputStream(imageByteArray);
         IOUtils.copy(in, response.getOutputStream());
